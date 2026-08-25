@@ -1,39 +1,76 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>مسبحتي | Marium Badr</title>
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
+  <title>مسبحتي | M.K.B</title>
 
   <meta
     name="description"
     content="مسبحة إلكترونية بسيطة تساعدك على ذكر الله ومتابعة ذكرك اليومي."
-  />
+  >
 
-  <meta name="theme-color" content="#f4efe6" />
+  <meta name="theme-color" content="#6f8f78">
 
-  <link rel="stylesheet" href="style.css" />
-  <link rel="manifest" href="manifest.json" />
+  <!-- PWA -->
+  <link rel="manifest" href="./manifest.json">
+
+  <!-- App Icons -->
+  <link
+    rel="icon"
+    type="image/png"
+    href="./logo.png"
+  >
+
+  <link
+    rel="apple-touch-icon"
+    href="./logo.png"
+  >
+
+  <!-- Styles -->
+  <link
+    rel="stylesheet"
+    href="./style.css"
+  >
 </head>
+
 
 <body>
 
   <div class="app">
 
-    <!-- Top Bar -->
+
+    <!-- =========================
+         TOP BAR
+    ========================== -->
+
     <header class="topbar">
 
       <div class="brand">
-        <div class="brand-mark">م</div>
+
+        <div class="brand-mark">
+          <img
+            src="./logo.png"
+            alt="شعار مسبحتي M.K.B"
+          >
+        </div>
 
         <div class="brand-text">
           <h1>مسبحتي</h1>
-          <span>Marium Badr</span>
+          <span>M.K.B</span>
         </div>
+
       </div>
 
+
       <div class="top-actions">
+
         <button
           id="themeToggle"
           class="icon-button"
@@ -42,15 +79,23 @@
         >
           🌙
         </button>
+
       </div>
 
     </header>
 
 
-    <!-- Main Content -->
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
     <main class="main-content">
 
-      <!-- Home Screen -->
+
+      <!-- =========================
+           HOME SCREEN
+      ========================== -->
+
       <section
         id="homeScreen"
         class="screen active"
@@ -59,6 +104,7 @@
         <div class="verse-card">
           ﴿ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ ﴾
         </div>
+
 
         <div class="hero">
 
@@ -91,7 +137,8 @@
         ></div>
 
 
-        <!-- Quick Cards -->
+        <!-- QUICK CARDS -->
+
         <div class="quick-grid">
 
           <button
@@ -99,7 +146,10 @@
             data-go="tasbeeh"
             type="button"
           >
-            <span class="quick-icon">📿</span>
+
+            <span class="quick-icon">
+              📿
+            </span>
 
             <span class="quick-title">
               أذكاري
@@ -108,6 +158,7 @@
             <span class="quick-text">
               اختر الذكر وابدأ
             </span>
+
           </button>
 
 
@@ -116,7 +167,10 @@
             data-go="today"
             type="button"
           >
-            <span class="quick-icon">🤍</span>
+
+            <span class="quick-icon">
+              🤍
+            </span>
 
             <span class="quick-title">
               حصيلة اليوم
@@ -128,6 +182,7 @@
             >
               0
             </span>
+
           </button>
 
 
@@ -136,7 +191,10 @@
             data-go="stats"
             type="button"
           >
-            <span class="quick-icon">📊</span>
+
+            <span class="quick-icon">
+              📊
+            </span>
 
             <span class="quick-title">
               إحصائياتي
@@ -145,6 +203,7 @@
             <span class="quick-text">
               تابع استمراريتك
             </span>
+
           </button>
 
 
@@ -153,7 +212,10 @@
             class="quick-card"
             type="button"
           >
-            <span class="quick-icon">🌿</span>
+
+            <span class="quick-icon">
+              🌿
+            </span>
 
             <span class="quick-title">
               اختر لي ذكرًا
@@ -162,17 +224,20 @@
             <span class="quick-text">
               اختيار عشوائي
             </span>
+
           </button>
 
         </div>
 
 
-        <!-- What should I say now? -->
+        <!-- WHAT SHOULD I SAY? -->
+
         <section class="section-block">
 
           <div class="section-heading">
 
             <div>
+
               <span class="eyebrow">
                 ماذا أذكر الآن؟
               </span>
@@ -180,6 +245,7 @@
               <h3>
                 اختر ما يناسبك
               </h3>
+
             </div>
 
           </div>
@@ -192,6 +258,7 @@
               data-dhikr-id="istighfar"
               type="button"
             >
+
               <span>
                 أريد الاستغفار
               </span>
@@ -199,6 +266,7 @@
               <strong>
                 أستغفر الله وأتوب إليه
               </strong>
+
             </button>
 
 
@@ -207,6 +275,7 @@
               data-dhikr-id="subhan-wabihamdih"
               type="button"
             >
+
               <span>
                 أريد التسبيح
               </span>
@@ -214,6 +283,7 @@
               <strong>
                 سبحان الله وبحمده
               </strong>
+
             </button>
 
 
@@ -222,6 +292,7 @@
               data-dhikr-id="salawat"
               type="button"
             >
+
               <span>
                 أريد الصلاة على النبي ﷺ
               </span>
@@ -229,6 +300,7 @@
               <strong>
                 اللهم صل وسلم على نبينا محمد
               </strong>
+
             </button>
 
 
@@ -237,6 +309,7 @@
               data-dhikr-id="hawqala"
               type="button"
             >
+
               <span>
                 أريد ذكرًا خفيفًا
               </span>
@@ -244,6 +317,7 @@
               <strong>
                 لا حول ولا قوة إلا بالله
               </strong>
+
             </button>
 
           </div>
@@ -251,7 +325,8 @@
         </section>
 
 
-        <!-- Daily encouragement -->
+        <!-- DAILY MESSAGE -->
+
         <section class="section-block">
 
           <div class="faith-card">
@@ -271,7 +346,10 @@
       </section>
 
 
-      <!-- Tasbeeh Screen -->
+      <!-- =========================
+           TASBEEH SCREEN
+      ========================== -->
+
       <section
         id="tasbeehScreen"
         class="screen"
@@ -280,6 +358,7 @@
         <div class="screen-header">
 
           <div>
+
             <span class="eyebrow">
               المسبحة
             </span>
@@ -287,6 +366,7 @@
             <h2>
               اختر ذكرًا وابدأ
             </h2>
+
           </div>
 
         </div>
@@ -317,6 +397,7 @@
 
             </div>
 
+
             <button
               id="dhikrVirtueBtn"
               class="secondary-small-button"
@@ -328,11 +409,14 @@
           </div>
 
 
+          <!-- COUNT MODE -->
+
           <div class="mode-box">
 
             <span class="field-label">
               نوع العد
             </span>
+
 
             <div class="mode-options">
 
@@ -344,6 +428,7 @@
                 ذكر حر ♾️
               </button>
 
+
               <button
                 id="sunnahModeBtn"
                 class="mode-button hidden"
@@ -351,6 +436,7 @@
               >
                 العدد الوارد
               </button>
+
 
               <button
                 id="personalGoalBtn"
@@ -365,6 +451,8 @@
           </div>
 
 
+          <!-- PERSONAL GOAL -->
+
           <div
             id="personalGoalBox"
             class="personal-goal-box hidden"
@@ -374,6 +462,7 @@
               حدد هدفك الشخصي
             </label>
 
+
             <div class="goal-input-row">
 
               <input
@@ -382,7 +471,8 @@
                 inputmode="numeric"
                 min="1"
                 placeholder="مثال: 100"
-              />
+              >
+
 
               <button
                 id="saveGoalBtn"
@@ -394,12 +484,15 @@
 
             </div>
 
+
             <p>
               هدف شخصي وليس عددًا واردًا في السنة.
             </p>
 
           </div>
 
+
+          <!-- COUNTER -->
 
           <div class="counter-area">
 
@@ -417,9 +510,11 @@
                 0
               </span>
 
+
               <span class="counter-label">
                 اضغط للذكر
               </span>
+
 
               <span
                 id="goalProgress"
@@ -430,6 +525,8 @@
 
           </div>
 
+
+          <!-- COUNTER TOTALS -->
 
           <div class="counter-summary">
 
@@ -445,6 +542,7 @@
 
             </div>
 
+
             <div class="summary-item">
 
               <span>
@@ -459,6 +557,8 @@
 
           </div>
 
+
+          <!-- VIBRATION -->
 
           <div class="settings-card">
 
@@ -476,12 +576,13 @@
 
               </div>
 
+
               <label class="switch">
 
                 <input
                   id="vibrationToggle"
                   type="checkbox"
-                />
+                >
 
                 <span class="slider"></span>
 
@@ -492,10 +593,13 @@
           </div>
 
 
+          <!-- TASBEEH MESSAGE -->
+
           <div
             id="tasbeehMessage"
             class="faith-card tasbeeh-message"
           >
+
             <span class="faith-icon">
               🤍
             </span>
@@ -503,6 +607,7 @@
             <p>
               ذكر قليل دائم خير من اندفاع ينقطع.
             </p>
+
           </div>
 
 
@@ -519,7 +624,10 @@
       </section>
 
 
-      <!-- Today Screen -->
+      <!-- =========================
+           TODAY SCREEN
+      ========================== -->
+
       <section
         id="todayScreen"
         class="screen"
@@ -565,6 +673,8 @@
         ></div>
 
 
+        <!-- YESTERDAY COMPARISON -->
+
         <section class="comparison-card">
 
           <div class="comparison-columns">
@@ -581,6 +691,7 @@
 
             </div>
 
+
             <div>
 
               <span>
@@ -594,6 +705,7 @@
             </div>
 
           </div>
+
 
           <p id="comparisonMessage">
             ما زال في يومك متسع لذكر الله 🤍
@@ -630,7 +742,10 @@
       </section>
 
 
-      <!-- Statistics Screen -->
+      <!-- =========================
+           STATISTICS SCREEN
+      ========================== -->
+
       <section
         id="statsScreen"
         class="screen"
@@ -653,6 +768,8 @@
         </div>
 
 
+        <!-- TABS -->
+
         <div class="stats-tabs">
 
           <button
@@ -663,6 +780,7 @@
             اليوم
           </button>
 
+
           <button
             class="stats-tab"
             data-period="week"
@@ -670,6 +788,7 @@
           >
             الأسبوع
           </button>
+
 
           <button
             class="stats-tab"
@@ -681,6 +800,8 @@
 
         </div>
 
+
+        <!-- DAY -->
 
         <div
           id="dayStats"
@@ -700,6 +821,7 @@
               </strong>
 
             </div>
+
 
             <div class="stat-card">
 
@@ -744,6 +866,8 @@
         </div>
 
 
+        <!-- WEEK -->
+
         <div
           id="weekStats"
           class="stats-panel"
@@ -769,6 +893,7 @@
 
             </div>
 
+
             <div class="stat-card">
 
               <span>
@@ -785,6 +910,8 @@
 
         </div>
 
+
+        <!-- MONTH -->
 
         <div
           id="monthStats"
@@ -816,6 +943,7 @@
 
               </div>
 
+
               <div>
 
                 <span>
@@ -827,6 +955,7 @@
                 </strong>
 
               </div>
+
 
               <div>
 
@@ -840,6 +969,7 @@
 
               </div>
 
+
               <div>
 
                 <span>
@@ -851,6 +981,7 @@
                 </strong>
 
               </div>
+
 
               <div>
 
@@ -880,6 +1011,8 @@
         </div>
 
 
+        <!-- STREAK -->
+
         <section class="streak-card">
 
           <div
@@ -888,6 +1021,7 @@
           >
             🌱
           </div>
+
 
           <div>
 
@@ -912,7 +1046,10 @@
     </main>
 
 
-    <!-- Bottom Navigation -->
+    <!-- =========================
+         BOTTOM NAVIGATION
+    ========================== -->
+
     <nav class="bottom-nav">
 
       <button
@@ -920,8 +1057,10 @@
         data-screen="home"
         type="button"
       >
+
         <span>🏠</span>
         <small>الرئيسية</small>
+
       </button>
 
 
@@ -930,8 +1069,10 @@
         data-screen="tasbeeh"
         type="button"
       >
+
         <span>📿</span>
         <small>المسبحة</small>
+
       </button>
 
 
@@ -940,8 +1081,10 @@
         data-screen="today"
         type="button"
       >
+
         <span>🤍</span>
         <small>حصيلتي</small>
+
       </button>
 
 
@@ -950,14 +1093,19 @@
         data-screen="stats"
         type="button"
       >
+
         <span>📊</span>
         <small>الإحصائيات</small>
+
       </button>
 
     </nav>
 
 
-    <!-- Virtue Modal -->
+    <!-- =========================
+         VIRTUE MODAL
+    ========================== -->
+
     <div
       id="virtueModal"
       class="modal hidden"
@@ -966,21 +1114,26 @@
 
       <div class="modal-backdrop"></div>
 
+
       <div class="modal-card">
 
         <button
           id="closeVirtueModal"
           class="modal-close"
           type="button"
+          aria-label="إغلاق"
         >
           ×
         </button>
+
 
         <span class="eyebrow">
           ✨ فضل هذا الذكر
         </span>
 
+
         <h3 id="virtueDhikrName"></h3>
+
 
         <blockquote id="virtueHadith"></blockquote>
 
@@ -1014,7 +1167,10 @@
     </div>
 
 
-    <!-- Reset Confirmation Modal -->
+    <!-- =========================
+         RESET MODAL
+    ========================== -->
+
     <div
       id="resetModal"
       class="modal hidden"
@@ -1022,6 +1178,7 @@
     >
 
       <div class="modal-backdrop"></div>
+
 
       <div class="modal-card small-modal">
 
@@ -1044,6 +1201,7 @@
             إلغاء
           </button>
 
+
           <button
             id="confirmResetBtn"
             class="danger-button"
@@ -1059,7 +1217,10 @@
     </div>
 
 
-    <!-- Share Modal -->
+    <!-- =========================
+         SHARE MODAL
+    ========================== -->
+
     <div
       id="shareModal"
       class="modal hidden"
@@ -1068,15 +1229,18 @@
 
       <div class="modal-backdrop"></div>
 
+
       <div class="modal-card small-modal">
 
         <button
           id="closeShareModal"
           class="modal-close"
           type="button"
+          aria-label="إغلاق"
         >
           ×
         </button>
+
 
         <h3>
           شارك المسبحة 🤍
@@ -1092,6 +1256,7 @@
             مشاركة
           </button>
 
+
           <button
             id="shareWhatsAppBtn"
             type="button"
@@ -1099,12 +1264,14 @@
             WhatsApp
           </button>
 
+
           <button
             id="shareFacebookBtn"
             type="button"
           >
             Facebook
           </button>
+
 
           <button
             id="copyLinkBtn"
@@ -1120,7 +1287,10 @@
     </div>
 
 
-    <!-- Floating Share Button -->
+    <!-- =========================
+         FLOATING SHARE
+    ========================== -->
+
     <button
       id="openShareBtn"
       class="floating-share"
@@ -1131,7 +1301,10 @@
     </button>
 
 
-    <!-- Footer -->
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
     <footer class="app-footer">
 
       <p>
@@ -1139,7 +1312,7 @@
       </p>
 
       <strong>
-        Marium Badr
+        M.K.B
       </strong>
 
     </footer>
@@ -1147,28 +1320,52 @@
   </div>
 
 
-  <!-- Main JavaScript -->
-  <script src="app.js"></script>
+  <!-- =========================
+       MAIN JAVASCRIPT
+  ========================== -->
+
+  <script src="./app.js"></script>
 
 
-  <!-- PWA Service Worker -->
+  <!-- =========================
+       SERVICE WORKER
+  ========================== -->
+
   <script>
+
     if ("serviceWorker" in navigator) {
-      window.addEventListener("load", function () {
-        navigator.serviceWorker
-          .register("./service-worker.js")
-          .then(function () {
-            console.log("Service Worker registered successfully");
-          })
-          .catch(function (error) {
-            console.log(
-              "Service Worker registration failed:",
-              error
-            );
-          });
-      });
+
+      window.addEventListener(
+        "load",
+        function () {
+
+          navigator.serviceWorker
+            .register("./service-worker.js")
+
+            .then(function () {
+
+              console.log(
+                "Masbahati Service Worker registered successfully"
+              );
+
+            })
+
+            .catch(function (error) {
+
+              console.log(
+                "Service Worker registration failed:",
+                error
+              );
+
+            });
+
+        }
+      );
+
     }
+
   </script>
 
 </body>
+
 </html>
