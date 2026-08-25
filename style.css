@@ -61,7 +61,9 @@ button {
   padding-bottom: 160px;
 }
 
-/* Topbar */
+/* =========================
+   TOP BAR
+========================= */
 
 .topbar {
   position: sticky;
@@ -70,7 +72,7 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 18px;
+  padding: 14px 18px;
   background: color-mix(in srgb, var(--bg) 88%, transparent);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
@@ -79,46 +81,57 @@ button {
 .brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 11px;
 }
 
 .brand-mark {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: var(--primary);
-  color: white;
-  border: 2px solid var(--gold);
-  font-size: 22px;
-  font-weight: bold;
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 6px 18px rgba(48, 59, 52, 0.08);
+}
+
+.brand-mark img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 .brand-text h1 {
   margin: 0;
-  font-size: 19px;
+  font-size: 20px;
+  line-height: 1.2;
 }
 
 .brand-text span {
   display: block;
-  margin-top: 2px;
+  margin-top: 4px;
   font-size: 11px;
   color: var(--muted);
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
+  direction: ltr;
+  text-align: right;
 }
 
 .icon-button {
-  width: 43px;
-  height: 43px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: 1px solid var(--border);
   background: var(--surface);
   color: var(--text);
   cursor: pointer;
+  box-shadow: var(--shadow);
 }
 
-/* General */
+/* =========================
+   GENERAL
+========================= */
 
 .main-content {
   padding: 18px;
@@ -151,7 +164,9 @@ button {
   font-size: 26px;
 }
 
-/* Home */
+/* =========================
+   HOME
+========================= */
 
 .verse-card {
   background: var(--surface);
@@ -310,7 +325,9 @@ button {
   color: var(--muted);
 }
 
-/* Dhikr list */
+/* =========================
+   DHIKR LIST
+========================= */
 
 .dhikr-list {
   display: grid;
@@ -331,6 +348,7 @@ button {
 .dhikr-card strong {
   display: block;
   font-size: 16px;
+  line-height: 1.7;
 }
 
 .dhikr-card span {
@@ -338,9 +356,12 @@ button {
   margin-top: 5px;
   color: var(--muted);
   font-size: 12px;
+  line-height: 1.6;
 }
 
-/* Active dhikr */
+/* =========================
+   ACTIVE DHIKR
+========================= */
 
 .active-dhikr-panel {
   margin-top: 18px;
@@ -434,7 +455,9 @@ button {
   font-size: 12px;
 }
 
-/* Counter */
+/* =========================
+   COUNTER
+========================= */
 
 .counter-area {
   display: flex;
@@ -448,7 +471,11 @@ button {
   border-radius: 50%;
   border: 3px solid var(--gold);
   background:
-    radial-gradient(circle at 40% 30%, rgba(255,255,255,0.15), transparent 35%),
+    radial-gradient(
+      circle at 40% 30%,
+      rgba(255, 255, 255, 0.15),
+      transparent 35%
+    ),
     var(--primary);
   color: white;
   display: flex;
@@ -481,7 +508,9 @@ button {
 
 .goal-progress {
   margin-top: 9px;
-  font-size: 13px;
+  padding: 0 16px;
+  font-size: 12px;
+  line-height: 1.5;
 }
 
 .counter-summary {
@@ -536,12 +565,15 @@ button {
   font-size: 12px;
 }
 
-/* Switch */
+/* =========================
+   SWITCH
+========================= */
 
 .switch {
   position: relative;
   width: 50px;
   height: 28px;
+  flex-shrink: 0;
 }
 
 .switch input {
@@ -593,7 +625,9 @@ button {
   cursor: pointer;
 }
 
-/* Today */
+/* =========================
+   TODAY
+========================= */
 
 .big-stat-card {
   padding: 24px;
@@ -684,7 +718,9 @@ button {
   border-radius: 14px;
 }
 
-/* Stats */
+/* =========================
+   STATS
+========================= */
 
 .stats-tabs {
   display: grid;
@@ -708,7 +744,7 @@ button {
 .stats-tab.active {
   background: var(--surface);
   color: var(--text);
-  box-shadow: 0 4px 13px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 13px rgba(0, 0, 0, 0.05);
 }
 
 .stats-panel {
@@ -838,6 +874,7 @@ button {
   font-size: 38px;
   border-radius: 50%;
   background: var(--surface-soft);
+  flex-shrink: 0;
 }
 
 .streak-card span,
@@ -856,7 +893,9 @@ button {
   font-size: 13px;
 }
 
-/* Bottom nav */
+/* =========================
+   BOTTOM NAV
+========================= */
 
 .bottom-nav {
   position: fixed;
@@ -873,7 +912,7 @@ button {
   border-radius: 20px;
   background: color-mix(in srgb, var(--surface) 94%, transparent);
   border: 1px solid var(--border);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
   backdrop-filter: blur(12px);
 }
 
@@ -905,7 +944,9 @@ button {
   color: var(--primary-dark);
 }
 
-/* Modal */
+/* =========================
+   MODALS
+========================= */
 
 .modal {
   position: fixed;
@@ -919,7 +960,7 @@ button {
 .modal-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0, 0, 0, 0.45);
 }
 
 .modal-card {
@@ -933,7 +974,7 @@ button {
   border-radius: 20px;
   background: var(--surface);
   color: var(--text);
-  box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
 }
 
 .small-modal {
@@ -1020,7 +1061,9 @@ button {
   cursor: pointer;
 }
 
-/* Floating share */
+/* =========================
+   FLOATING SHARE
+========================= */
 
 .floating-share {
   position: fixed;
@@ -1038,7 +1081,9 @@ button {
   font-size: 21px;
 }
 
-/* Footer */
+/* =========================
+   FOOTER
+========================= */
 
 .app-footer {
   text-align: center;
@@ -1053,10 +1098,14 @@ button {
 
 .app-footer strong {
   color: var(--primary-dark);
-  letter-spacing: 0.4px;
+  letter-spacing: 1px;
+  direction: ltr;
+  display: inline-block;
 }
 
-/* Desktop */
+/* =========================
+   DESKTOP
+========================= */
 
 @media (min-width: 700px) {
   .main-content {
@@ -1078,11 +1127,27 @@ button {
   }
 }
 
-/* Small phones */
+/* =========================
+   SMALL PHONES
+========================= */
 
 @media (max-width: 370px) {
   .main-content {
     padding: 14px;
+  }
+
+  .topbar {
+    padding: 12px 14px;
+  }
+
+  .brand-mark {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+  }
+
+  .brand-text h1 {
+    font-size: 18px;
   }
 
   .quick-grid {
