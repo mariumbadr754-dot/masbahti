@@ -1,144 +1,281 @@
 /* =========================================================
-   مسبحتي | Marium Badr
-   Main Application
+   مسبحتي
+   Masbahaty
+   Application JavaScript
 ========================================================= */
 
 
 /* =========================================================
-   1. قاعدة بيانات الأذكار
-   ملاحظة: سنراجع توثيق النصوص الشرعية مرة أخيرة قبل النشر النهائي.
+   1. إعدادات عامة
+========================================================= */
+
+const STORAGE_KEY = "masbahaty_data_v3";
+
+const CONTACT_PHONE = "201012669500";
+
+const SHARE_TEXT =
+  "مسبحة إلكترونية بسيطة تساعدك على ذكر الله أينما كنت 🤍🌿";
+
+
+/* =========================================================
+   2. قاعدة بيانات الأذكار
 ========================================================= */
 
 const DHIKR_LIST = [
 
   {
     id: "subhanallah",
+
     name: "سبحان الله",
+
     type: "sunnahCount",
+
     sunnahCount: 100,
+
     hadith:
-      "«أيعجز أحدكم أن يكسب كل يوم ألف حسنة؟ يسبح مائة تسبيحة، فيكتب له ألف حسنة، أو يحط عنه ألف خطيئة»",
-    source: "صحيح مسلم"
+      "«أيعجز أحدكم أن يكسب كل يوم ألف حسنة؟» فقيل: كيف يكسب أحدنا ألف حسنة؟ قال: «يسبح مائة تسبيحة، فيكتب له ألف حسنة، أو يحط عنه ألف خطيئة»",
+
+    source:
+      "صحيح مسلم (2698)",
+
+    note:
+      "العدد الوارد في هذا الحديث: 100 تسبيحة."
   },
+
 
   {
     id: "alhamdulillah",
+
     name: "الحمد لله",
+
     type: "free",
+
     hadith:
       "«والحمد لله تملأ الميزان»",
-    source: "صحيح مسلم"
+
+    source:
+      "صحيح مسلم",
+
+    note:
+      "ذكر حر ♾️ ولا نضع له عددًا خاصًا من عندنا."
   },
+
 
   {
     id: "la-ilaha-illa-allah",
+
     name: "لا إله إلا الله",
+
     type: "free",
+
     hadith:
       "«أفضل الذكر لا إله إلا الله»",
-    source: "رواه الترمذي وابن ماجه، وحسنه أهل العلم"
+
+    source:
+      "رواه الترمذي وابن ماجه، وحسنه أهل العلم",
+
+    note:
+      "ذكر حر ♾️"
   },
+
 
   {
     id: "allahu-akbar",
+
     name: "الله أكبر",
+
     type: "free",
+
     hadith:
       "«أحب الكلام إلى الله أربع: سبحان الله، والحمد لله، ولا إله إلا الله، والله أكبر»",
-    source: "صحيح مسلم"
+
+    source:
+      "صحيح مسلم",
+
+    note:
+      "ذكر حر ♾️"
   },
+
 
   {
     id: "subhan-wabihamdih",
+
     name: "سبحان الله وبحمده",
+
     type: "sunnahCount",
+
     sunnahCount: 100,
+
     hadith:
-      "«من قال سبحان الله وبحمده في يوم مائة مرة، حُطَّت خطاياه وإن كانت مثل زبد البحر»",
-    source: "متفق عليه"
+      "«من قال سبحان الله وبحمده في يوم مائة مرة، حطت خطاياه وإن كانت مثل زبد البحر»",
+
+    source:
+      "متفق عليه",
+
+    note:
+      "العدد الوارد في الحديث: 100 مرة في اليوم."
   },
+
 
   {
     id: "subhanallah-alazim",
+
     name: "سبحان الله العظيم",
+
     type: "free",
+
     hadith:
-      "«كلمتان خفيفتان على اللسان، ثقيلتان في الميزان، حبيبتان إلى الرحمن: سبحان الله العظيم، سبحان الله وبحمده»",
-    source: "متفق عليه"
+      "«كلمتان خفيفتان على اللسان، ثقيلتان في الميزان، حبيبتان إلى الرحمن: سبحان الله وبحمده، سبحان الله العظيم»",
+
+    source:
+      "متفق عليه",
+
+    note:
+      "ذكر حر ♾️"
   },
+
 
   {
     id: "two-light-words",
-    name: "سبحان الله وبحمده، سبحان الله العظيم",
+
+    name:
+      "سبحان الله وبحمده، سبحان الله العظيم",
+
     type: "free",
+
     hadith:
-      "«كلمتان خفيفتان على اللسان، ثقيلتان في الميزان، حبيبتان إلى الرحمن: سبحان الله العظيم، سبحان الله وبحمده»",
-    source: "متفق عليه"
+      "«كلمتان خفيفتان على اللسان، ثقيلتان في الميزان، حبيبتان إلى الرحمن: سبحان الله وبحمده، سبحان الله العظيم»",
+
+    source:
+      "متفق عليه",
+
+    note:
+      "ذكر حر ♾️"
   },
+
 
   {
     id: "istighfar",
-    name: "أستغفر الله وأتوب إليه",
+
+    name:
+      "أستغفر الله وأتوب إليه",
+
     type: "free",
+
     hadith:
       "«طوبى لمن وجد في صحيفته استغفارًا كثيرًا»",
-    source: "رواه ابن ماجه، والحديث صحيح"
+
+    source:
+      "رواه ابن ماجه، وصححه أهل العلم",
+
+    note:
+      "لا نضع لهذا الحديث عددًا شرعيًا ثابتًا."
   },
+
 
   {
     id: "hawqala",
-    name: "لا حول ولا قوة إلا بالله",
+
+    name:
+      "لا حول ولا قوة إلا بالله",
+
     type: "free",
+
     hadith:
       "«ألا أدلك على كنز من كنوز الجنة؟ لا حول ولا قوة إلا بالله»",
-    source: "متفق عليه"
+
+    source:
+      "متفق عليه",
+
+    note:
+      "ذكر حر ♾️"
   },
+
 
   {
     id: "salawat",
-    name: "اللهم صل وسلم على نبينا محمد",
+
+    name:
+      "اللهم صل وسلم على نبينا محمد",
+
     type: "free",
+
     hadith:
-      "«من صلى عليَّ واحدة صلى الله عليه بها عشرًا»",
-    source: "صحيح مسلم"
+      "«من صلى علي واحدة صلى الله عليه بها عشرًا»",
+
+    source:
+      "صحيح مسلم",
+
+    note:
+      "ذكر حر ♾️"
   },
+
 
   {
     id: "four-words",
-    name: "سبحان الله والحمد لله ولا إله إلا الله والله أكبر",
+
+    name:
+      "سبحان الله والحمد لله ولا إله إلا الله والله أكبر",
+
     type: "free",
+
     hadith:
       "«أحب الكلام إلى الله أربع: سبحان الله، والحمد لله، ولا إله إلا الله، والله أكبر»",
-    source: "صحيح مسلم"
+
+    source:
+      "صحيح مسلم",
+
+    note:
+      "ذكر حر ♾️"
   },
+
 
   {
     id: "tahlil-100",
+
     name:
       "لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير",
+
     type: "sunnahCount",
+
     sunnahCount: 100,
+
     hadith:
       "من قالها مائة مرة في يوم كان له عدل عشر رقاب، وكتبت له مائة حسنة، ومحيت عنه مائة سيئة، وكانت له حرزًا من الشيطان يومه ذلك حتى يمسي.",
-    source: "متفق عليه"
+
+    source:
+      "متفق عليه",
+
+    note:
+      "العدد الوارد في الحديث: 100 مرة في اليوم."
   },
+
 
   {
     id: "juwayriyah",
+
     name:
       "سبحان الله عدد خلقه، سبحان الله رضا نفسه، سبحان الله زنة عرشه، سبحان الله مداد كلماته",
+
     type: "sunnahCount",
+
     sunnahCount: 3,
+
     hadith:
-      "ثبت في حديث جويرية رضي الله عنها أن النبي ﷺ قال إنه قال أربع كلمات ثلاث مرات، لو وزنت بما قالت منذ بداية يومها لوزنتهن.",
-    source: "صحيح مسلم"
+      "ثبت في حديث جويرية رضي الله عنها أن النبي ﷺ قال هذه الكلمات ثلاث مرات، وبيّن فضلها العظيم.",
+
+    source:
+      "صحيح مسلم",
+
+    note:
+      "العدد الوارد في الحديث: 3 مرات."
   }
 
 ];
 
 
 /* =========================================================
-   2. الرسائل الإيمانية
+   3. الرسائل الإيمانية
 ========================================================= */
 
 const FAITH_MESSAGES = [
@@ -159,63 +296,80 @@ const FAITH_MESSAGES = [
 
   "لسان يذكر الله… نعمة تستحق الحمد.",
 
-  "خذ معك ذكر الله أينما ذهبت 🤍",
+  "دقيقة ذكر خير من دقيقة ضاعت بلا فائدة.",
 
-  "اجعل دقائق يومك عامرة بذكر الله 🌿"
+  "خذ معك ذكر الله أينما ذهبت 🤍"
+
+];
+
+
+const RETURN_MESSAGES = [
+
+  "مرحبًا بعودتك 🌿 لا يهم كم مضى… المهم أن تبدأ من جديد.",
+
+  "يوم جديد… وبداية جديدة 🤍",
+
+  "ابدأ الآن ولو بدقيقة واحدة 🌱",
+
+  "صفحة جديدة تبدأ بذكر الله 🤍"
 
 ];
 
 
 const CLOSING_MESSAGES = [
 
-  "انتهى يوم وبقي أثر ما قدمت فيه، اللهم اجعلنا من الذاكرين الله كثيرًا والذاكرات 🤍",
+  "انتهى يوم وبقي أثر ما قدمت فيه. اللهم اجعلنا من الذاكرين الله كثيرًا والذاكرات 🤍",
 
-  "كل يوم فرصة جديدة لذكر الله 🌿",
+  "اللهم تقبل ما مضى، وأعنّا على ذكرك فيما هو آت 🌿",
 
-  "القليل الدائم أحب إلى النفس من اندفاع ينقطع.",
+  "كل يوم فرصة جديدة لذكر الله 🤍",
 
-  "اللهم أعنّا على ذكرك وشكرك وحسن عبادتك 🤍",
+  "خذ معك ذكر الله أينما ذهبت.",
 
-  "خذ معك ذكر الله أينما ذهبت 🌱"
+  "اللهم أعنا على ذكرك وشكرك وحسن عبادتك 🤍"
 
 ];
 
 
 /* =========================================================
-   3. مفاتيح التخزين
-========================================================= */
-
-const STORAGE_KEY = "masbahati_data_v1";
-
-
-/* =========================================================
-   4. الحالة الأساسية
+   4. حالة التطبيق
 ========================================================= */
 
 let state = {
 
-  activeDhikrId: "subhanallah",
+  activeDhikrId:
+    "subhanallah",
 
-  activeMode: "free",
+  activeMode:
+    "free",
 
-  vibration: true,
+  vibration:
+    true,
 
-  darkMode: false,
+  darkMode:
+    false,
 
-  personalGoals: {},
+  personalGoals:
+    {},
 
-  sessionCounters: {},
+  sessionCounters:
+    {},
 
-  history: {},
+  history:
+    {},
 
-  lastActivityDate: null,
+  lastActivityDate:
+    null,
 
-  lastOpenDate: null
+  lastOpenDate:
+    null
 
 };
 
 
 let sessionStarted = false;
+
+let pendingImportData = null;
 
 
 /* =========================================================
@@ -224,60 +378,96 @@ let sessionStarted = false;
 
 function getTodayKey() {
 
-  const now = new Date();
+  const date =
+    new Date();
 
-  const year = now.getFullYear();
 
-  const month =
-    String(now.getMonth() + 1)
-      .padStart(2, "0");
+  return getDateKey(
+    date
+  );
 
-  const day =
-    String(now.getDate())
-      .padStart(2, "0");
-
-  return `${year}-${month}-${day}`;
 }
 
 
-function getDateKey(date) {
+function getDateKey(
+  date
+) {
 
-  const year = date.getFullYear();
+  const year =
+    date.getFullYear();
+
 
   const month =
-    String(date.getMonth() + 1)
-      .padStart(2, "0");
+    String(
+      date.getMonth() + 1
+    ).padStart(
+      2,
+      "0"
+    );
+
 
   const day =
-    String(date.getDate())
-      .padStart(2, "0");
+    String(
+      date.getDate()
+    ).padStart(
+      2,
+      "0"
+    );
 
-  return `${year}-${month}-${day}`;
+
+  return (
+    year +
+    "-" +
+    month +
+    "-" +
+    day
+  );
+
 }
 
 
 function getYesterdayKey() {
 
-  const date = new Date();
+  const date =
+    new Date();
+
 
   date.setDate(
     date.getDate() - 1
   );
 
-  return getDateKey(date);
+
+  return getDateKey(
+    date
+  );
+
 }
 
 
-function parseDateKey(key) {
+function parseDateKey(
+  key
+) {
 
   const parts =
     key.split("-");
 
+
   return new Date(
-    Number(parts[0]),
-    Number(parts[1]) - 1,
-    Number(parts[2])
+
+    Number(
+      parts[0]
+    ),
+
+    Number(
+      parts[1]
+    ) - 1,
+
+    Number(
+      parts[2]
+    )
+
   );
+
 }
 
 
@@ -295,19 +485,30 @@ function daysBetween(
 
   }
 
+
   const first =
-    parseDateKey(firstKey);
+    parseDateKey(
+      firstKey
+    );
+
 
   const second =
-    parseDateKey(secondKey);
+    parseDateKey(
+      secondKey
+    );
 
-  const difference =
-    second - first;
 
   return Math.round(
-    difference /
+
+    (
+      second -
+      first
+    ) /
+
     86400000
+
   );
+
 }
 
 
@@ -319,11 +520,14 @@ function createEmptyDay() {
 
   return {
 
-    total: 0,
+    total:
+      0,
 
-    sessions: 0,
+    sessions:
+      0,
 
-    dhikr: {}
+    dhikr:
+      {}
 
   };
 
@@ -332,24 +536,27 @@ function createEmptyDay() {
 
 function ensureToday() {
 
-  const today =
+  const key =
     getTodayKey();
 
+
   if (
-    !state.history[today]
+    !state.history[key]
   ) {
 
-    state.history[today] =
+    state.history[key] =
       createEmptyDay();
 
   }
 
-  return state.history[today];
+
+  return state.history[key];
+
 }
 
 
 /* =========================================================
-   7. الحفظ والتحميل
+   7. التخزين
 ========================================================= */
 
 function saveState() {
@@ -357,13 +564,20 @@ function saveState() {
   try {
 
     localStorage.setItem(
+
       STORAGE_KEY,
-      JSON.stringify(state)
+
+      JSON.stringify(
+        state
+      )
+
     );
 
   }
 
-  catch (error) {
+  catch (
+    error
+  ) {
 
     console.error(
       "تعذر حفظ البيانات",
@@ -384,33 +598,47 @@ function loadState() {
         STORAGE_KEY
       );
 
-    if (saved) {
 
-      const parsed =
-        JSON.parse(saved);
+    if (
+      !saved
+    ) {
 
-      state = {
-
-        ...state,
-
-        ...parsed,
-
-        personalGoals:
-          parsed.personalGoals || {},
-
-        sessionCounters:
-          parsed.sessionCounters || {},
-
-        history:
-          parsed.history || {}
-
-      };
+      return;
 
     }
 
+
+    const parsed =
+      JSON.parse(
+        saved
+      );
+
+
+    state = {
+
+      ...state,
+
+      ...parsed,
+
+      personalGoals:
+        parsed.personalGoals ||
+        {},
+
+      sessionCounters:
+        parsed.sessionCounters ||
+        {},
+
+      history:
+        parsed.history ||
+        {}
+
+    };
+
   }
 
-  catch (error) {
+  catch (
+    error
+  ) {
 
     console.error(
       "تعذر تحميل البيانات",
@@ -475,18 +703,6 @@ const sessionCounter =
   );
 
 
-const activeDhikrTodayTotal =
-  document.getElementById(
-    "activeDhikrTodayTotal"
-  );
-
-
-const allTodayTotal =
-  document.getElementById(
-    "allTodayTotal"
-  );
-
-
 const tapCounterButton =
   document.getElementById(
     "tapCounterButton"
@@ -529,12 +745,73 @@ const goalProgress =
   );
 
 
+const vibrationToggle =
+  document.getElementById(
+    "vibrationToggle"
+  );
+
+
+const vibrationSupportMessage =
+  document.getElementById(
+    "vibrationSupportMessage"
+  );
+
+
+const toast =
+  document.getElementById(
+    "toast"
+  );
+
+
 /* =========================================================
-   9. التنقل
+   9. Toast
+========================================================= */
+
+let toastTimer = null;
+
+
+function showToast(
+  message
+) {
+
+  toast.textContent =
+    message;
+
+
+  toast.classList.remove(
+    "hidden"
+  );
+
+
+  clearTimeout(
+    toastTimer
+  );
+
+
+  toastTimer =
+    setTimeout(
+
+      function () {
+
+        toast.classList.add(
+          "hidden"
+        );
+
+      },
+
+      2600
+
+    );
+
+}
+
+
+/* =========================================================
+   10. التنقل
 ========================================================= */
 
 function showScreen(
-  screenName
+  name
 ) {
 
   Object.values(
@@ -552,11 +829,19 @@ function showScreen(
   );
 
 
-  screens[
-    screenName
-  ].classList.add(
-    "active"
-  );
+  if (
+    !screens[name]
+  ) {
+
+    return;
+
+  }
+
+
+  screens[name]
+    .classList.add(
+      "active"
+    );
 
 
   document
@@ -572,7 +857,7 @@ function showScreen(
           "active",
 
           button.dataset.screen ===
-          screenName
+          name
 
         );
 
@@ -582,7 +867,7 @@ function showScreen(
 
 
   if (
-    screenName === "today"
+    name === "today"
   ) {
 
     renderToday();
@@ -591,7 +876,7 @@ function showScreen(
 
 
   if (
-    screenName === "stats"
+    name === "stats"
   ) {
 
     renderStatistics();
@@ -619,7 +904,7 @@ document
 
         "click",
 
-        () => {
+        function () {
 
           showScreen(
             button.dataset.screen
@@ -646,7 +931,7 @@ document
 
         "click",
 
-        () => {
+        function () {
 
           showScreen(
             button.dataset.go
@@ -669,7 +954,7 @@ document
 
     "click",
 
-    () => {
+    function () {
 
       showScreen(
         "tasbeeh"
@@ -681,12 +966,13 @@ document
 
 
 /* =========================================================
-   10. عرض قائمة الأذكار
+   11. الأذكار
 ========================================================= */
 
 function renderDhikrList() {
 
-  dhikrList.innerHTML = "";
+  dhikrList.innerHTML =
+    "";
 
 
   DHIKR_LIST.forEach(
@@ -699,19 +985,23 @@ function renderDhikrList() {
         );
 
 
-      button.className =
-        "dhikr-card";
-
-
       button.type =
         "button";
 
 
-      const modeText =
-        dhikr.type ===
-        "sunnahCount"
+      button.className =
+        "dhikr-card";
 
-          ? `العدد الوارد: ${dhikr.sunnahCount} • أو ذكر حر ♾️`
+
+      const modeText =
+
+        dhikr.sunnahCount
+
+          ? (
+              "العدد الوارد: " +
+              dhikr.sunnahCount +
+              " • أو ذكر حر ♾️"
+            )
 
           : "ذكر حر ♾️";
 
@@ -733,7 +1023,7 @@ function renderDhikrList() {
 
         "click",
 
-        () => {
+        function () {
 
           selectDhikr(
             dhikr.id
@@ -756,15 +1046,15 @@ function renderDhikrList() {
 
 
 /* =========================================================
-   11. الحصول على الذكر الحالي
+   12. الذكر الحالي
 ========================================================= */
 
 function getActiveDhikr() {
 
   return DHIKR_LIST.find(
 
-    dhikr =>
-      dhikr.id ===
+    item =>
+      item.id ===
       state.activeDhikrId
 
   );
@@ -772,25 +1062,22 @@ function getActiveDhikr() {
 }
 
 
-/* =========================================================
-   12. اختيار الذكر
-========================================================= */
-
 function selectDhikr(
-  dhikrId
+  id
 ) {
 
   const dhikr =
     DHIKR_LIST.find(
 
       item =>
-        item.id ===
-        dhikrId
+        item.id === id
 
     );
 
 
-  if (!dhikr) {
+  if (
+    !dhikr
+  ) {
 
     return;
 
@@ -798,7 +1085,7 @@ function selectDhikr(
 
 
   state.activeDhikrId =
-    dhikrId;
+    id;
 
 
   state.activeMode =
@@ -809,23 +1096,18 @@ function selectDhikr(
     false;
 
 
-  saveState();
-
-
   activeDhikrPanel
     .classList.remove(
       "hidden"
     );
 
 
-  activeDhikrName
-    .textContent =
+  activeDhikrName.textContent =
     dhikr.name;
 
 
   if (
-    dhikr.type ===
-    "sunnahCount"
+    dhikr.sunnahCount
   ) {
 
     sunnahModeBtn
@@ -836,7 +1118,8 @@ function selectDhikr(
 
     sunnahModeBtn
       .textContent =
-      `العدد الوارد: ${dhikr.sunnahCount}`;
+      "العدد الوارد: " +
+      dhikr.sunnahCount;
 
   }
 
@@ -854,6 +1137,8 @@ function selectDhikr(
     "free"
   );
 
+
+  saveState();
 
   renderCounter();
 
@@ -919,49 +1204,52 @@ function setMode(
 }
 
 
-freeModeBtn.addEventListener(
+freeModeBtn
+  .addEventListener(
 
-  "click",
+    "click",
 
-  () => {
+    function () {
 
-    setMode(
-      "free"
-    );
+      setMode(
+        "free"
+      );
 
-  }
+    }
 
-);
-
-
-sunnahModeBtn.addEventListener(
-
-  "click",
-
-  () => {
-
-    setMode(
-      "sunnah"
-    );
-
-  }
-
-);
+  );
 
 
-personalGoalBtn.addEventListener(
+sunnahModeBtn
+  .addEventListener(
 
-  "click",
+    "click",
 
-  () => {
+    function () {
 
-    setMode(
-      "personal"
-    );
+      setMode(
+        "sunnah"
+      );
 
-  }
+    }
 
-);
+  );
+
+
+personalGoalBtn
+  .addEventListener(
+
+    "click",
+
+    function () {
+
+      setMode(
+        "personal"
+      );
+
+    }
+
+  );
 
 
 /* =========================================================
@@ -976,7 +1264,7 @@ document
 
     "click",
 
-    () => {
+    function () {
 
       const goal =
         Number(
@@ -985,11 +1273,13 @@ document
 
 
       if (
-        !goal ||
+        !Number.isFinite(
+          goal
+        ) ||
         goal < 1
       ) {
 
-        alert(
+        showToast(
           "اكتبي هدفًا صحيحًا أكبر من صفر."
         );
 
@@ -1000,12 +1290,20 @@ document
 
       state.personalGoals[
         state.activeDhikrId
-      ] = goal;
+      ] =
+        Math.floor(
+          goal
+        );
 
 
       saveState();
 
       renderCounter();
+
+
+      showToast(
+        "تم حفظ هدفك الشخصي 🌿"
+      );
 
     }
 
@@ -1018,10 +1316,12 @@ document
 
 function getSessionCount() {
 
-  return (
+  return Number(
+
     state.sessionCounters[
       state.activeDhikrId
     ] || 0
+
   );
 
 }
@@ -1033,52 +1333,208 @@ function setSessionCount(
 
   state.sessionCounters[
     state.activeDhikrId
-  ] = value;
+  ] =
+    value;
 
 }
 
 
 /* =========================================================
-   16. الضغط للتسبيح
+   16. الاهتزاز
 ========================================================= */
+
+function vibrationSupported() {
+
+  return (
+    "vibrate" in
+    navigator
+  );
+
+}
+
+
+function setupVibration() {
+
+  vibrationToggle.checked =
+    Boolean(
+      state.vibration
+    );
+
+
+  if (
+    vibrationSupported()
+  ) {
+
+    vibrationSupportMessage
+      .textContent =
+      "الاهتزاز مدعوم على هذا الجهاز.";
+
+  }
+
+  else {
+
+    vibrationSupportMessage
+      .textContent =
+      "هذا الجهاز أو المتصفح لا يدعم اهتزاز صفحات الويب.";
+
+  }
+
+}
+
+
+function vibrate() {
+
+  if (
+    !state.vibration
+  ) {
+
+    return;
+
+  }
+
+
+  if (
+    !vibrationSupported()
+  ) {
+
+    return;
+
+  }
+
+
+  try {
+
+    navigator.vibrate(
+      25
+    );
+
+  }
+
+  catch (
+    error
+  ) {
+
+    console.log(
+      "Vibration unavailable",
+      error
+    );
+
+  }
+
+}
+
+
+vibrationToggle
+  .addEventListener(
+
+    "change",
+
+    function () {
+
+      state.vibration =
+        vibrationToggle.checked;
+
+
+      saveState();
+
+
+      if (
+        state.vibration &&
+        vibrationSupported()
+      ) {
+
+        navigator.vibrate(
+          40
+        );
+
+        showToast(
+          "تم تشغيل الاهتزاز."
+        );
+
+      }
+
+      else if (
+        state.vibration
+      ) {
+
+        showToast(
+          "جهازك لا يدعم الاهتزاز داخل المتصفح."
+        );
+
+      }
+
+      else {
+
+        showToast(
+          "تم إيقاف الاهتزاز."
+        );
+
+      }
+
+    }
+
+  );
+
+
+/* =========================================================
+   17. تسجيل الضغطة
+========================================================= */
+
+let lastTapTime = 0;
+
 
 function registerDhikrPress() {
 
-  ensureToday();
+  const now =
+    Date.now();
 
 
-  const todayKey =
-    getTodayKey();
+  /*
+    منع الضغط المزدوج غير المقصود
+    بفاصل شديد القصر
+  */
+
+  if (
+    now -
+    lastTapTime <
+    70
+  ) {
+
+    return;
+
+  }
+
+
+  lastTapTime =
+    now;
 
 
   const today =
-    state.history[
-      todayKey
-    ];
+    ensureToday();
 
 
-  const dhikrId =
+  const id =
     state.activeDhikrId;
 
 
-  /* عداد الجلسة */
-
-  const newSessionCount =
+  const session =
     getSessionCount() + 1;
 
 
   setSessionCount(
-    newSessionCount
+    session
   );
 
-
-  /* بدء جلسة جديدة */
 
   if (
     !sessionStarted
   ) {
 
-    today.sessions++;
+    today.sessions =
+      Number(
+        today.sessions || 0
+      ) + 1;
+
 
     sessionStarted =
       true;
@@ -1086,25 +1542,20 @@ function registerDhikrPress() {
   }
 
 
-  /* إجمالي الذكر المحدد */
-
-  today.dhikr[
-    dhikrId
-  ] =
-    (
-      today.dhikr[
-        dhikrId
-      ] || 0
+  today.dhikr[id] =
+    Number(
+      today.dhikr[id] || 0
     ) + 1;
 
 
-  /* إجمالي اليوم */
-
-  today.total++;
+  today.total =
+    Number(
+      today.total || 0
+    ) + 1;
 
 
   state.lastActivityDate =
-    todayKey;
+    getTodayKey();
 
 
   saveState();
@@ -1112,10 +1563,9 @@ function registerDhikrPress() {
 
   vibrate();
 
-
   renderCounter();
 
-  updateHomeTotals();
+  updateHome();
 
   showMilestoneMessage(
     today.total
@@ -1134,14 +1584,14 @@ tapCounterButton
   );
 
 
-/* منع بعض النقرات المزدوجة غير المقصودة */
-
 tapCounterButton
   .addEventListener(
 
     "dblclick",
 
-    event => {
+    function (
+      event
+    ) {
 
       event.preventDefault();
 
@@ -1151,7 +1601,7 @@ tapCounterButton
 
 
 /* =========================================================
-   17. عرض العداد
+   18. عرض العداد
 ========================================================= */
 
 function renderCounter() {
@@ -1160,7 +1610,9 @@ function renderCounter() {
     getActiveDhikr();
 
 
-  if (!dhikr) {
+  if (
+    !dhikr
+  ) {
 
     return;
 
@@ -1175,30 +1627,39 @@ function renderCounter() {
     getSessionCount();
 
 
-  sessionCounter
-    .textContent =
+  sessionCounter.textContent =
     session;
 
 
-  activeDhikrName
-    .textContent =
+  activeDhikrName.textContent =
     dhikr.name;
 
 
-  activeDhikrTodayTotal
+  document
+    .getElementById(
+      "activeDhikrTodayTotal"
+    )
     .textContent =
-    today.dhikr[
-      dhikr.id
-    ] || 0;
+
+      Number(
+        today.dhikr[
+          dhikr.id
+        ] || 0
+      );
 
 
-  allTodayTotal
+  document
+    .getElementById(
+      "allTodayTotal"
+    )
     .textContent =
-    today.total;
+
+      Number(
+        today.total || 0
+      );
 
 
-  goalProgress
-    .textContent =
+  goalProgress.textContent =
     "";
 
 
@@ -1208,9 +1669,12 @@ function renderCounter() {
     dhikr.sunnahCount
   ) {
 
-    goalProgress
-      .textContent =
-      `${session} / ${dhikr.sunnahCount} — العدد الوارد في الحديث`;
+    goalProgress.textContent =
+
+      session +
+      " / " +
+      dhikr.sunnahCount +
+      " — العدد الوارد في الحديث";
 
   }
 
@@ -1221,29 +1685,36 @@ function renderCounter() {
   ) {
 
     const goal =
-      state.personalGoals[
-        dhikr.id
-      ];
+      Number(
+
+        state.personalGoals[
+          dhikr.id
+        ] || 0
+
+      );
 
 
-    if (goal) {
+    if (
+      goal > 0
+    ) {
 
-      personalGoalInput
-        .value =
+      personalGoalInput.value =
         goal;
 
 
-      goalProgress
-        .textContent =
-        `${session} / ${goal} — هدف شخصي`;
+      goalProgress.textContent =
+
+        session +
+        " / " +
+        goal +
+        " — هدف شخصي";
 
     }
 
     else {
 
-      goalProgress
-        .textContent =
-        "حددي هدفًا شخصيًا إن أحببتِ";
+      goalProgress.textContent =
+        "حددي هدفًا شخصيًا إن أحببتِ.";
 
     }
 
@@ -1253,59 +1724,7 @@ function renderCounter() {
 
 
 /* =========================================================
-   18. الاهتزاز
-========================================================= */
-
-function vibrate() {
-
-  if (
-    !state.vibration
-  ) {
-
-    return;
-
-  }
-
-
-  if (
-    navigator.vibrate
-  ) {
-
-    navigator.vibrate(
-      18
-    );
-
-  }
-
-}
-
-
-const vibrationToggle =
-  document.getElementById(
-    "vibrationToggle"
-  );
-
-
-vibrationToggle
-  .addEventListener(
-
-    "change",
-
-    () => {
-
-      state.vibration =
-        vibrationToggle.checked;
-
-
-      saveState();
-
-    }
-
-  );
-
-
-/* =========================================================
-   19. تصفير عداد الجلسة
+   19. تصفير الجلسة
 ========================================================= */
 
 const resetModal =
@@ -1322,7 +1741,7 @@ document
 
     "click",
 
-    () => {
+    function () {
 
       resetModal
         .classList.remove(
@@ -1355,7 +1774,7 @@ document
 
     "click",
 
-    () => {
+    function () {
 
       setSessionCount(
         0
@@ -1371,6 +1790,11 @@ document
       renderCounter();
 
       closeResetModal();
+
+
+      showToast(
+        "تم تصفير عداد الجلسة فقط."
+      );
 
     }
 
@@ -1405,10 +1829,19 @@ document
 
     "click",
 
-    () => {
+    function () {
 
       const dhikr =
         getActiveDhikr();
+
+
+      if (
+        !dhikr
+      ) {
+
+        return;
+
+      }
 
 
       document
@@ -1435,6 +1868,14 @@ document
         dhikr.source;
 
 
+      document
+        .getElementById(
+          "virtueNote"
+        )
+        .textContent =
+        dhikr.note || "";
+
+
       const countBox =
         document.getElementById(
           "virtueCountBox"
@@ -1456,7 +1897,9 @@ document
             "virtueCount"
           )
           .textContent =
-          `${dhikr.sunnahCount} مرة`;
+
+          dhikr.sunnahCount +
+          " مرة";
 
       }
 
@@ -1488,7 +1931,7 @@ document
 
     "click",
 
-    () => {
+    function () {
 
       virtueModal
         .classList.add(
@@ -1501,7 +1944,99 @@ document
 
 
 /* =========================================================
-   21. حصيلة اليوم
+   21. أكثر ذكر
+========================================================= */
+
+function getMostUsedDhikr(
+  day
+) {
+
+  const entries =
+    Object.entries(
+      day.dhikr || {}
+    )
+    .filter(
+
+      ([, count]) =>
+        Number(
+          count
+        ) > 0
+
+    );
+
+
+  if (
+    entries.length === 0
+  ) {
+
+    return null;
+
+  }
+
+
+  entries.sort(
+
+    function (
+      a,
+      b
+    ) {
+
+      return (
+        Number(
+          b[1]
+        ) -
+        Number(
+          a[1]
+        )
+      );
+
+    }
+
+  );
+
+
+  const [
+    id,
+    count
+  ] =
+    entries[0];
+
+
+  const dhikr =
+    DHIKR_LIST.find(
+
+      item =>
+        item.id === id
+
+    );
+
+
+  if (
+    !dhikr
+  ) {
+
+    return null;
+
+  }
+
+
+  return {
+
+    name:
+      dhikr.name,
+
+    count:
+      Number(
+        count
+      )
+
+  };
+
+}
+
+
+/* =========================================================
+   22. اليوم
 ========================================================= */
 
 function renderToday() {
@@ -1513,7 +2048,8 @@ function renderToday() {
   const yesterday =
     state.history[
       getYesterdayKey()
-    ] || createEmptyDay();
+    ] ||
+    createEmptyDay();
 
 
   document
@@ -1548,6 +2084,29 @@ function renderToday() {
     today.sessions;
 
 
+  const top =
+    getMostUsedDhikr(
+      today
+    );
+
+
+  document
+    .getElementById(
+      "todayTopDhikr"
+    )
+    .textContent =
+
+    top
+
+      ? (
+          top.name +
+          " — " +
+          top.count
+        )
+
+      : "—";
+
+
   const breakdown =
     document.getElementById(
       "todayDhikrBreakdown"
@@ -1558,22 +2117,41 @@ function renderToday() {
     "";
 
 
-  const usedDhikr =
+  const entries =
     Object.entries(
-      today.dhikr
+      today.dhikr || {}
     )
     .filter(
+
       ([, count]) =>
-        count > 0
+        Number(
+          count
+        ) > 0
+
     )
     .sort(
-      (a, b) =>
-        b[1] - a[1]
+
+      function (
+        a,
+        b
+      ) {
+
+        return (
+          Number(
+            b[1]
+          ) -
+          Number(
+            a[1]
+          )
+        );
+
+      }
+
     );
 
 
   if (
-    usedDhikr.length === 0
+    entries.length === 0
   ) {
 
     breakdown.innerHTML = `
@@ -1595,18 +2173,32 @@ function renderToday() {
   }
 
 
-  usedDhikr.forEach(
+  entries.forEach(
 
-    ([id, count]) => {
+    function (
+      entry
+    ) {
+
+      const id =
+        entry[0];
+
+
+      const count =
+        entry[1];
+
 
       const dhikr =
         DHIKR_LIST.find(
+
           item =>
             item.id === id
+
         );
 
 
-      if (!dhikr) {
+      if (
+        !dhikr
+      ) {
 
         return;
 
@@ -1646,8 +2238,11 @@ function renderToday() {
 
 
   renderYesterdayComparison(
+
     today.total,
+
     yesterday.total
+
   );
 
 
@@ -1656,6 +2251,7 @@ function renderToday() {
       "todayClosingMessage"
     )
     .textContent =
+
     randomItem(
       CLOSING_MESSAGES
     );
@@ -1664,12 +2260,12 @@ function renderToday() {
 
 
 /* =========================================================
-   22. مقارنة اليوم بالأمس
+   23. مقارنة أمس
 ========================================================= */
 
 function renderYesterdayComparison(
-  today,
-  yesterday
+  todayTotal,
+  yesterdayTotal
 ) {
 
   const element =
@@ -1679,7 +2275,7 @@ function renderYesterdayComparison(
 
 
   if (
-    yesterday === 0
+    yesterdayTotal <= 0
   ) {
 
     element.textContent =
@@ -1691,23 +2287,32 @@ function renderYesterdayComparison(
 
 
   if (
-    today > yesterday
+    todayTotal >
+    yesterdayTotal
   ) {
 
-    const difference =
-      today - yesterday;
+    const diff =
+      todayTotal -
+      yesterdayTotal;
 
 
-    const percentage =
+    const percent =
       (
-        difference /
-        yesterday *
+        diff /
+        yesterdayTotal *
         100
-      ).toFixed(1);
+      ).toFixed(
+        1
+      );
 
 
     element.textContent =
-      `زدت اليوم ${difference} مرة عن أمس 🌱 (+${percentage}%)`;
+
+      "زدت اليوم " +
+      diff +
+      " مرة عن أمس 🌱 (+" +
+      percent +
+      "%)";
 
   }
 
@@ -1722,79 +2327,13 @@ function renderYesterdayComparison(
 
 
 /* =========================================================
-   23. إحصائيات اليوم
-========================================================= */
-
-function getMostUsedDhikr(
-  day
-) {
-
-  const entries =
-    Object.entries(
-      day.dhikr || {}
-    );
-
-
-  if (
-    entries.length === 0
-  ) {
-
-    return null;
-
-  }
-
-
-  entries.sort(
-
-    (a, b) =>
-      b[1] - a[1]
-
-  );
-
-
-  const [
-    id,
-    count
-  ] =
-    entries[0];
-
-
-  const dhikr =
-    DHIKR_LIST.find(
-
-      item =>
-        item.id === id
-
-    );
-
-
-  if (!dhikr) {
-
-    return null;
-
-  }
-
-
-  return {
-
-    name:
-      dhikr.name,
-
-    count:
-      count
-
-  };
-
-}
-
-
-/* =========================================================
    24. الأسبوع
 ========================================================= */
 
 function getLastSevenDays() {
 
-  const days = [];
+  const days =
+    [];
 
 
   for (
@@ -1820,78 +2359,11 @@ function getLastSevenDays() {
 
     days.push({
 
-      key,
+      key:
+        key,
 
-      date,
-
-      data:
-        state.history[key] ||
-        createEmptyDay()
-
-    });
-
-  }
-
-
-  return days;
-
-}
-
-
-/* =========================================================
-   25. الشهر
-========================================================= */
-
-function getCurrentMonthDays() {
-
-  const now =
-    new Date();
-
-
-  const year =
-    now.getFullYear();
-
-
-  const month =
-    now.getMonth();
-
-
-  const daysInMonth =
-    new Date(
-      year,
-      month + 1,
-      0
-    ).getDate();
-
-
-  const days = [];
-
-
-  for (
-    let day = 1;
-    day <= daysInMonth;
-    day++
-  ) {
-
-    const date =
-      new Date(
-        year,
-        month,
-        day
-      );
-
-
-    const key =
-      getDateKey(
-        date
-      );
-
-
-    days.push({
-
-      key,
-
-      date,
+      date:
+        date,
 
       data:
         state.history[key] ||
@@ -1906,162 +2378,6 @@ function getCurrentMonthDays() {
 
 }
 
-
-function getPreviousMonthTotal() {
-
-  const now =
-    new Date();
-
-
-  const previous =
-    new Date(
-      now.getFullYear(),
-      now.getMonth() - 1,
-      1
-    );
-
-
-  const year =
-    previous.getFullYear();
-
-
-  const month =
-    previous.getMonth();
-
-
-  let total = 0;
-
-
-  Object.entries(
-    state.history
-  )
-  .forEach(
-
-    ([key, day]) => {
-
-      const date =
-        parseDateKey(
-          key
-        );
-
-
-      if (
-        date.getFullYear() === year &&
-        date.getMonth() === month
-      ) {
-
-        total +=
-          day.total || 0;
-
-      }
-
-    }
-
-  );
-
-
-  return total;
-
-}
-
-
-/* =========================================================
-   26. الإحصائيات الكاملة
-========================================================= */
-
-function renderStatistics() {
-
-  const today =
-    ensureToday();
-
-
-  const yesterday =
-    state.history[
-      getYesterdayKey()
-    ] || createEmptyDay();
-
-
-  /* اليوم */
-
-  document
-    .getElementById(
-      "statsTodayTotal"
-    )
-    .textContent =
-    today.total;
-
-
-  document
-    .getElementById(
-      "statsTodaySessions"
-    )
-    .textContent =
-    today.sessions;
-
-
-  const mostUsed =
-    getMostUsedDhikr(
-      today
-    );
-
-
-  document
-    .getElementById(
-      "mostUsedToday"
-    )
-    .textContent =
-    mostUsed
-
-      ? `${mostUsed.name} — ${mostUsed.count}`
-
-      : "لا توجد بيانات بعد";
-
-
-  const comparison =
-    document.getElementById(
-      "dayComparisonStat"
-    );
-
-
-  if (
-    yesterday.total === 0
-  ) {
-
-    comparison.textContent =
-      "لا توجد بيانات كافية للمقارنة";
-
-  }
-
-  else if (
-    today.total >
-    yesterday.total
-  ) {
-
-    comparison.textContent =
-      `+${today.total - yesterday.total} عن أمس`;
-
-  }
-
-  else {
-
-    comparison.textContent =
-      "ما زال في يومك متسع للذكر 🤍";
-
-  }
-
-
-  renderWeekStats();
-
-  renderMonthStats();
-
-  renderStreak();
-
-}
-
-
-/* =========================================================
-   27. رسم الأسبوع
-========================================================= */
 
 function renderWeekStats() {
 
@@ -2072,9 +2388,19 @@ function renderWeekStats() {
   const total =
     days.reduce(
 
-      (sum, item) =>
-        sum +
-        item.data.total,
+      function (
+        sum,
+        item
+      ) {
+
+        return (
+          sum +
+          Number(
+            item.data.total || 0
+          )
+        );
+
+      },
 
       0
 
@@ -2103,6 +2429,63 @@ function renderWeekStats() {
     average;
 
 
+  let bestDay =
+    days[0];
+
+
+  days.forEach(
+
+    function (
+      day
+    ) {
+
+      if (
+        day.data.total >
+        bestDay.data.total
+      ) {
+
+        bestDay =
+          day;
+
+      }
+
+    }
+
+  );
+
+
+  const dayNames = [
+
+    "الأحد",
+    "الاثنين",
+    "الثلاثاء",
+    "الأربعاء",
+    "الخميس",
+    "الجمعة",
+    "السبت"
+
+  ];
+
+
+  document
+    .getElementById(
+      "weekBestDay"
+    )
+    .textContent =
+
+    bestDay.data.total > 0
+
+      ? (
+          dayNames[
+            bestDay.date.getDay()
+          ] +
+          " — " +
+          bestDay.data.total
+        )
+
+      : "—";
+
+
   const chart =
     document.getElementById(
       "weekChart"
@@ -2117,8 +2500,12 @@ function renderWeekStats() {
     Math.max(
 
       ...days.map(
+
         item =>
-          item.data.total
+          Number(
+            item.data.total || 0
+          )
+
       ),
 
       1
@@ -2126,7 +2513,7 @@ function renderWeekStats() {
     );
 
 
-  const dayNames = [
+  const shortDays = [
 
     "أحد",
     "اثن",
@@ -2141,7 +2528,15 @@ function renderWeekStats() {
 
   days.forEach(
 
-    item => {
+    function (
+      item
+    ) {
+
+      const value =
+        Number(
+          item.data.total || 0
+        );
+
 
       const height =
         Math.max(
@@ -2149,9 +2544,10 @@ function renderWeekStats() {
           4,
 
           (
-            item.data.total /
+            value /
             max
-          ) * 160
+          ) *
+          165
 
         );
 
@@ -2168,23 +2564,24 @@ function renderWeekStats() {
 
       column.innerHTML = `
 
-        <strong style="
-          font-size:10px;
-          display:block;
-          margin-bottom:5px;
-        ">
-          ${item.data.total}
+        <strong
+          style="
+            font-size:10px;
+            display:block;
+            margin-bottom:5px;
+          "
+        >
+          ${value}
         </strong>
 
         <div
           class="bar"
-          style="
-            height:${height}px;
-          "
-        ></div>
+          style="height:${height}px"
+        >
+        </div>
 
         <span>
-          ${dayNames[item.date.getDay()]}
+          ${shortDays[item.date.getDay()]}
         </span>
 
       `;
@@ -2202,36 +2599,210 @@ function renderWeekStats() {
 
 
 /* =========================================================
-   28. إحصائيات الشهر
+   25. الشهر
 ========================================================= */
 
-function renderMonthStats() {
+const MONTH_NAMES = [
 
-  const days =
-    getCurrentMonthDays();
+  "يناير",
+  "فبراير",
+  "مارس",
+  "أبريل",
+  "مايو",
+  "يونيو",
+  "يوليو",
+  "أغسطس",
+  "سبتمبر",
+  "أكتوبر",
+  "نوفمبر",
+  "ديسمبر"
 
+];
+
+
+function getCurrentMonthDays() {
 
   const now =
     new Date();
 
 
-  const currentDayNumber =
+  const year =
+    now.getFullYear();
+
+
+  const month =
+    now.getMonth();
+
+
+  const lastDay =
+    new Date(
+
+      year,
+
+      month + 1,
+
+      0
+
+    ).getDate();
+
+
+  const days =
+    [];
+
+
+  for (
+    let day = 1;
+    day <= lastDay;
+    day++
+  ) {
+
+    const date =
+      new Date(
+        year,
+        month,
+        day
+      );
+
+
+    const key =
+      getDateKey(
+        date
+      );
+
+
+    days.push({
+
+      key:
+        key,
+
+      date:
+        date,
+
+      data:
+        state.history[key] ||
+        createEmptyDay()
+
+    });
+
+  }
+
+
+  return days;
+
+}
+
+
+function getPreviousMonthTotal() {
+
+  const now =
+    new Date();
+
+
+  const previousMonth =
+    new Date(
+
+      now.getFullYear(),
+
+      now.getMonth() - 1,
+
+      1
+
+    );
+
+
+  let total =
+    0;
+
+
+  Object.entries(
+    state.history
+  )
+  .forEach(
+
+    function (
+      entry
+    ) {
+
+      const key =
+        entry[0];
+
+
+      const day =
+        entry[1];
+
+
+      const date =
+        parseDateKey(
+          key
+        );
+
+
+      if (
+
+        date.getFullYear() ===
+        previousMonth.getFullYear()
+
+        &&
+
+        date.getMonth() ===
+        previousMonth.getMonth()
+
+      ) {
+
+        total +=
+          Number(
+            day.total || 0
+          );
+
+      }
+
+    }
+
+  );
+
+
+  return total;
+
+}
+
+
+function renderMonthStats() {
+
+  const now =
+    new Date();
+
+
+  const days =
+    getCurrentMonthDays();
+
+
+  const currentDay =
     now.getDate();
 
 
-  const elapsedDays =
+  const elapsed =
     days.slice(
       0,
-      currentDayNumber
+      currentDay
     );
 
 
   const total =
-    elapsedDays.reduce(
+    elapsed.reduce(
 
-      (sum, item) =>
-        sum +
-        item.data.total,
+      function (
+        sum,
+        item
+      ) {
+
+        return (
+          sum +
+          Number(
+            item.data.total || 0
+          )
+        );
+
+      },
 
       0
 
@@ -2239,15 +2810,18 @@ function renderMonthStats() {
 
 
   const activeDays =
-    elapsedDays.filter(
+    elapsed.filter(
 
       item =>
-        item.data.total > 0
+        Number(
+          item.data.total || 0
+        ) > 0
 
     ).length;
 
 
   const average =
+
     activeDays > 0
 
       ? Math.round(
@@ -2258,20 +2832,29 @@ function renderMonthStats() {
       : 0;
 
 
-  /* أعلى يوم */
-
   let bestDay =
     null;
 
 
-  elapsedDays.forEach(
+  elapsed.forEach(
 
-    item => {
+    function (
+      item
+    ) {
 
       if (
-        !bestDay ||
-        item.data.total >
-        bestDay.data.total
+
+        !bestDay
+
+        ||
+
+        Number(
+          item.data.total || 0
+        ) >
+        Number(
+          bestDay.data.total || 0
+        )
+
       ) {
 
         bestDay =
@@ -2284,27 +2867,40 @@ function renderMonthStats() {
   );
 
 
-  /* أكثر ذكر */
+  const dhikrTotals =
+    {};
 
-  const dhikrTotals = {};
 
+  elapsed.forEach(
 
-  elapsedDays.forEach(
-
-    item => {
+    function (
+      item
+    ) {
 
       Object.entries(
         item.data.dhikr || {}
       )
       .forEach(
 
-        ([id, count]) => {
+        function (
+          entry
+        ) {
+
+          const id =
+            entry[0];
+
+
+          const count =
+            Number(
+              entry[1] || 0
+            );
+
 
           dhikrTotals[id] =
-            (
-              dhikrTotals[id] ||
-              0
-            ) + count;
+            Number(
+              dhikrTotals[id] || 0
+            ) +
+            count;
 
         }
 
@@ -2315,68 +2911,62 @@ function renderMonthStats() {
   );
 
 
+  const sortedDhikr =
+    Object.entries(
+      dhikrTotals
+    )
+    .sort(
+
+      function (
+        a,
+        b
+      ) {
+
+        return (
+          b[1] -
+          a[1]
+        );
+
+      }
+
+    );
+
+
   let topDhikr =
     null;
 
 
-  Object.entries(
-    dhikrTotals
-  )
-  .sort(
-    (a, b) =>
-      b[1] - a[1]
-  )
-  .forEach(
+  if (
+    sortedDhikr.length > 0
+  ) {
 
-    ([id, count], index) => {
+    const dhikr =
+      DHIKR_LIST.find(
 
-      if (
-        index === 0
-      ) {
+        item =>
+          item.id ===
+          sortedDhikr[0][0]
 
-        const dhikr =
-          DHIKR_LIST.find(
-            item =>
-              item.id === id
-          );
+      );
 
 
-        if (dhikr) {
+    if (
+      dhikr
+    ) {
 
-          topDhikr = {
+      topDhikr = {
 
-            name:
-              dhikr.name,
+        name:
+          dhikr.name,
 
-            count
+        count:
+          sortedDhikr[0][1]
 
-          };
-
-        }
-
-      }
+      };
 
     }
 
-  );
-
-
-  const monthNames = [
-
-    "يناير",
-    "فبراير",
-    "مارس",
-    "أبريل",
-    "مايو",
-    "يونيو",
-    "يوليو",
-    "أغسطس",
-    "سبتمبر",
-    "أكتوبر",
-    "نوفمبر",
-    "ديسمبر"
-
-  ];
+  }
 
 
   document
@@ -2384,7 +2974,12 @@ function renderMonthStats() {
       "monthHarvestTitle"
     )
     .textContent =
-    `حصاد ذكرك في ${monthNames[now.getMonth()]} 🤍`;
+
+    "حصاد ذكرك في " +
+    MONTH_NAMES[
+      now.getMonth()
+    ] +
+    " 🤍";
 
 
   document
@@ -2400,7 +2995,11 @@ function renderMonthStats() {
       "monthActiveDays"
     )
     .textContent =
-    `${activeDays} من ${currentDayNumber} يومًا`;
+
+    activeDays +
+    " من " +
+    currentDay +
+    " يومًا";
 
 
   document
@@ -2408,9 +3007,14 @@ function renderMonthStats() {
       "monthTopDhikr"
     )
     .textContent =
+
     topDhikr
 
-      ? `${topDhikr.name} — ${topDhikr.count}`
+      ? (
+          topDhikr.name +
+          " — " +
+          topDhikr.count
+        )
 
       : "—";
 
@@ -2420,10 +3024,19 @@ function renderMonthStats() {
       "monthBestDay"
     )
     .textContent =
+
     bestDay &&
     bestDay.data.total > 0
 
-      ? `${bestDay.date.getDate()} ${monthNames[now.getMonth()]} — ${bestDay.data.total}`
+      ? (
+          bestDay.date.getDate() +
+          " " +
+          MONTH_NAMES[
+            now.getMonth()
+          ] +
+          " — " +
+          bestDay.data.total
+        )
 
       : "—";
 
@@ -2443,15 +3056,11 @@ function renderMonthStats() {
 }
 
 
-/* =========================================================
-   29. مقارنة الشهر
-========================================================= */
-
 function renderMonthComparison(
-  currentTotal
+  current
 ) {
 
-  const previousTotal =
+  const previous =
     getPreviousMonthTotal();
 
 
@@ -2462,7 +3071,7 @@ function renderMonthComparison(
 
 
   if (
-    previousTotal === 0
+    previous <= 0
   ) {
 
     element.textContent =
@@ -2474,32 +3083,35 @@ function renderMonthComparison(
 
 
   if (
-    currentTotal >
-    previousTotal
+    current >
+    previous
   ) {
 
-    const difference =
-      currentTotal -
-      previousTotal;
-
-
-    const percentage =
+    const percent =
       (
-        difference /
-        previousTotal *
+        (
+          current -
+          previous
+        ) /
+        previous *
         100
-      ).toFixed(1);
+      ).toFixed(
+        1
+      );
 
 
     element.textContent =
-      `زاد تسجيل ذكرك هذا الشهر بنسبة ${percentage}% عن الشهر السابق 🌱`;
+
+      "زدت هذا الشهر بنسبة " +
+      percent +
+      "% عن الشهر السابق 🌱";
 
   }
 
   else {
 
     element.textContent =
-      "كل يوم فرصة جديدة، والقليل الدائم خير من الكثير المنقطع 🌿";
+      "القليل الدائم خير من الكثير المنقطع 🌿";
 
   }
 
@@ -2507,35 +3119,30 @@ function renderMonthComparison(
 
 
 /* =========================================================
-   30. الاستمرارية
+   26. الاستمرارية
 ========================================================= */
 
 function calculateStreak() {
 
-  let streak = 0;
+  let streak =
+    0;
 
 
   let date =
     new Date();
 
 
-  const todayKey =
-    getDateKey(
-      date
-    );
-
-
   const today =
     state.history[
-      todayKey
+      getTodayKey()
     ];
 
 
-  /* لو لم يبدأ اليوم بعد، نحسب حتى أمس */
-
   if (
     !today ||
-    today.total === 0
+    Number(
+      today.total || 0
+    ) === 0
   ) {
 
     date.setDate(
@@ -2545,7 +3152,9 @@ function calculateStreak() {
   }
 
 
-  while (true) {
+  while (
+    true
+  ) {
 
     const key =
       getDateKey(
@@ -2554,17 +3163,18 @@ function calculateStreak() {
 
 
     const day =
-      state.history[
-        key
-      ];
+      state.history[key];
 
 
     if (
       day &&
-      day.total > 0
+      Number(
+        day.total || 0
+      ) > 0
     ) {
 
       streak++;
+
 
       date.setDate(
         date.getDate() - 1
@@ -2586,6 +3196,100 @@ function calculateStreak() {
 }
 
 
+function getPlantForStreak(
+  streak
+) {
+
+  if (
+    streak >= 30
+  ) {
+
+    return "🌳";
+
+  }
+
+
+  if (
+    streak >= 7
+  ) {
+
+    return "🌿";
+
+  }
+
+
+  if (
+    streak >= 3
+  ) {
+
+    return "🌱";
+
+  }
+
+
+  if (
+    streak >= 1
+  ) {
+
+    return "🌰";
+
+  }
+
+
+  return "🌱";
+
+}
+
+
+function getStreakMessage(
+  streak
+) {
+
+  if (
+    streak >= 30
+  ) {
+
+    return "استمرارية جميلة… اللهم أعنا على دوام ذكرك 🤍";
+
+  }
+
+
+  if (
+    streak >= 7
+  ) {
+
+    return (
+      "ذكرت الله " +
+      streak +
+      " أيام متتالية 🌱"
+    );
+
+  }
+
+
+  if (
+    streak >= 3
+  ) {
+
+    return "برعم صغير ينمو مع الاستمرار 🌿";
+
+  }
+
+
+  if (
+    streak >= 1
+  ) {
+
+    return "بداية طيبة… استمر بما يتيسر 🤍";
+
+  }
+
+
+  return "يوم جديد… وبداية جديدة 🤍";
+
+}
+
+
 function renderStreak() {
 
   const streak =
@@ -2593,90 +3297,183 @@ function renderStreak() {
 
 
   const plant =
-    document.getElementById(
-      "streakPlant"
-    );
-
-
-  const text =
-    document.getElementById(
-      "streakDays"
+    getPlantForStreak(
+      streak
     );
 
 
   const message =
-    document.getElementById(
-      "streakMessage"
+    getStreakMessage(
+      streak
     );
 
 
-  text.textContent =
-    `${streak} يوم`;
+  document
+    .getElementById(
+      "streakPlant"
+    )
+    .textContent =
+    plant;
 
 
-  if (
-    streak >= 30
-  ) {
+  document
+    .getElementById(
+      "streakDays"
+    )
+    .textContent =
 
-    plant.textContent =
-      "🌳";
+    streak +
+    " يوم";
 
-    message.textContent =
-      "استمرارية جميلة… اللهم أعنّا على دوام ذكرك 🤍";
 
-  }
+  document
+    .getElementById(
+      "streakMessage"
+    )
+    .textContent =
+    message;
 
-  else if (
-    streak >= 7
-  ) {
 
-    plant.textContent =
-      "🌿";
+  document
+    .getElementById(
+      "homeStreakPlant"
+    )
+    .textContent =
+    plant;
 
-    message.textContent =
-      `ذكرت الله ${streak} أيام متتالية 🌱`;
 
-  }
+  document
+    .getElementById(
+      "homeStreakDays"
+    )
+    .textContent =
 
-  else if (
-    streak >= 3
-  ) {
+    streak > 0
 
-    plant.textContent =
-      "🌱";
+      ? (
+          streak +
+          " يوم من الاستمرارية"
+        )
 
-    message.textContent =
-      "خطوات صغيرة مستمرة تصنع عادة جميلة.";
+      : "ابدأ يومك بذكر الله";
 
-  }
 
-  else if (
-    streak >= 1
-  ) {
-
-    plant.textContent =
-      "🌰";
-
-    message.textContent =
-      "بداية طيبة… استمر بما يتيسر 🤍";
-
-  }
-
-  else {
-
-    plant.textContent =
-      "🌱";
-
-    message.textContent =
-      "يوم جديد… وبداية جديدة 🤍";
-
-  }
+  document
+    .getElementById(
+      "homeStreakMessage"
+    )
+    .textContent =
+    message;
 
 }
 
 
 /* =========================================================
-   31. تبويبات الإحصائيات
+   27. الإحصائيات
+========================================================= */
+
+function renderStatistics() {
+
+  const today =
+    ensureToday();
+
+
+  const yesterday =
+    state.history[
+      getYesterdayKey()
+    ] ||
+    createEmptyDay();
+
+
+  document
+    .getElementById(
+      "statsTodayTotal"
+    )
+    .textContent =
+    today.total;
+
+
+  document
+    .getElementById(
+      "statsTodaySessions"
+    )
+    .textContent =
+    today.sessions;
+
+
+  const mostUsed =
+    getMostUsedDhikr(
+      today
+    );
+
+
+  document
+    .getElementById(
+      "mostUsedToday"
+    )
+    .textContent =
+
+    mostUsed
+
+      ? (
+          mostUsed.name +
+          " — " +
+          mostUsed.count
+        )
+
+      : "لا توجد بيانات بعد";
+
+
+  const comparison =
+    document.getElementById(
+      "dayComparisonStat"
+    );
+
+
+  if (
+    yesterday.total <= 0
+  ) {
+
+    comparison.textContent =
+      "لا توجد بيانات كافية للمقارنة";
+
+  }
+
+  else if (
+    today.total >
+    yesterday.total
+  ) {
+
+    comparison.textContent =
+
+      "+" +
+      (
+        today.total -
+        yesterday.total
+      ) +
+      " عن أمس";
+
+  }
+
+  else {
+
+    comparison.textContent =
+      "ما زال في يومك متسع للذكر 🤍";
+
+  }
+
+
+  renderWeekStats();
+
+  renderMonthStats();
+
+  renderStreak();
+
+}
+
+
+/* =========================================================
+   28. تبويبات الإحصائيات
 ========================================================= */
 
 document
@@ -2691,7 +3488,7 @@ document
 
         "click",
 
-        () => {
+        function () {
 
           document
             .querySelectorAll(
@@ -2732,7 +3529,8 @@ document
 
           document
             .getElementById(
-              `${period}Stats`
+              period +
+              "Stats"
             )
             .classList.add(
               "active"
@@ -2748,14 +3546,14 @@ document
 
 
 /* =========================================================
-   32. رسائل حسب العدد
+   29. الرسائل حسب العدد
 ========================================================= */
 
 function showMilestoneMessage(
   total
 ) {
 
-  const messageBox =
+  const element =
     document.querySelector(
       "#tasbeehMessage p"
     );
@@ -2764,14 +3562,15 @@ function showMilestoneMessage(
   const yesterday =
     state.history[
       getYesterdayKey()
-    ] || createEmptyDay();
+    ] ||
+    createEmptyDay();
 
 
   if (
     total === 100
   ) {
 
-    messageBox.textContent =
+    element.textContent =
       "سجلت مسبحتك 100 مرة من الذكر اليوم 🤍 استمر واجعل الذكر رفيق يومك.";
 
   }
@@ -2780,8 +3579,8 @@ function showMilestoneMessage(
     total === 500
   ) {
 
-    messageBox.textContent =
-      "500 مرة من الذكر مسجلة اليوم 🌿 ما شاء الله، استمر في ذكر الله.";
+    element.textContent =
+      "500 مرة من الذكر مسجلة اليوم 🌿 استمر بما يتيسر.";
 
   }
 
@@ -2789,19 +3588,24 @@ function showMilestoneMessage(
     total === 1000
   ) {
 
-    messageBox.textContent =
-      "سجلت مسبحتك 1000 مرة من الذكر اليوم 🤍 اللهم تقبل وأعنّا على دوام ذكرك.";
+    element.textContent =
+      "سجلت مسبحتك 1000 مرة من الذكر اليوم 🤍 اللهم تقبل وأعنا على دوام ذكرك.";
 
   }
 
   else if (
-    yesterday.total > 0 &&
+
+    yesterday.total > 0
+
+    &&
+
     total ===
     yesterday.total + 1
+
   ) {
 
-    messageBox.textContent =
-      "ما شاء الله 🌱 تجاوزت حصيلة أمس، واجعل المنافسة دائمًا مع نفسك.";
+    element.textContent =
+      "ما شاء الله 🌱 تجاوزت حصيلة أمس. واجعل المنافسة دائمًا مع نفسك.";
 
   }
 
@@ -2809,7 +3613,7 @@ function showMilestoneMessage(
     total % 25 === 0
   ) {
 
-    messageBox.textContent =
+    element.textContent =
       randomItem(
         FAITH_MESSAGES
       );
@@ -2820,129 +3624,10 @@ function showMilestoneMessage(
 
 
 /* =========================================================
-   33. الذكر العشوائي
+   30. الرئيسية
 ========================================================= */
 
-document
-  .getElementById(
-    "randomDhikrBtn"
-  )
-  .addEventListener(
-
-    "click",
-
-    chooseRandomDhikr
-
-  );
-
-
-function chooseRandomDhikr() {
-
-  const dhikr =
-    randomItem(
-      DHIKR_LIST
-    );
-
-
-  showScreen(
-    "tasbeeh"
-  );
-
-
-  selectDhikr(
-    dhikr.id
-  );
-
-}
-
-
-/* =========================================================
-   34. الاقتراحات من الرئيسية
-========================================================= */
-
-document
-  .querySelectorAll(
-    ".suggestion-card"
-  )
-  .forEach(
-
-    button => {
-
-      button.addEventListener(
-
-        "click",
-
-        () => {
-
-          showScreen(
-            "tasbeeh"
-          );
-
-
-          selectDhikr(
-            button.dataset.dhikrId
-          );
-
-        }
-
-      );
-
-    }
-
-  );
-
-
-/* =========================================================
-   35. الوضع الليلي
-========================================================= */
-
-const themeToggle =
-  document.getElementById(
-    "themeToggle"
-  );
-
-
-function applyTheme() {
-
-  document.body
-    .classList.toggle(
-      "dark",
-      state.darkMode
-    );
-
-
-  themeToggle.textContent =
-    state.darkMode
-      ? "☀️"
-      : "🌙";
-
-}
-
-
-themeToggle.addEventListener(
-
-  "click",
-
-  () => {
-
-    state.darkMode =
-      !state.darkMode;
-
-
-    applyTheme();
-
-    saveState();
-
-  }
-
-);
-
-
-/* =========================================================
-   36. تحديث الرئيسية
-========================================================= */
-
-function updateHomeTotals() {
+function updateHome() {
 
   const today =
     ensureToday();
@@ -2965,16 +3650,19 @@ function updateHomeTotals() {
       FAITH_MESSAGES
     );
 
+
+  renderStreak();
+
 }
 
 
 /* =========================================================
-   37. رسالة العودة
+   31. رسالة العودة
 ========================================================= */
 
 function renderReturnMessage() {
 
-  const box =
+  const element =
     document.getElementById(
       "returnMessage"
     );
@@ -2984,7 +3672,7 @@ function renderReturnMessage() {
     !state.lastActivityDate
   ) {
 
-    box.classList.add(
+    element.classList.add(
       "hidden"
     );
 
@@ -3007,11 +3695,13 @@ function renderReturnMessage() {
     difference >= 2
   ) {
 
-    box.textContent =
-      "مرحبًا بعودتك 🌿 لا يهم كم مضى… المهم أن تبدأ من جديد.";
+    element.textContent =
+      randomItem(
+        RETURN_MESSAGES
+      );
 
 
-    box.classList.remove(
+    element.classList.remove(
       "hidden"
     );
 
@@ -3019,7 +3709,7 @@ function renderReturnMessage() {
 
   else {
 
-    box.classList.add(
+    element.classList.add(
       "hidden"
     );
 
@@ -3029,7 +3719,132 @@ function renderReturnMessage() {
 
 
 /* =========================================================
-   38. المشاركة
+   32. الذكر العشوائي
+========================================================= */
+
+document
+  .getElementById(
+    "randomDhikrBtn"
+  )
+  .addEventListener(
+
+    "click",
+
+    function () {
+
+      const dhikr =
+        randomItem(
+          DHIKR_LIST
+        );
+
+
+      showScreen(
+        "tasbeeh"
+      );
+
+
+      selectDhikr(
+        dhikr.id
+      );
+
+    }
+
+  );
+
+
+/* =========================================================
+   33. الاقتراحات
+========================================================= */
+
+document
+  .querySelectorAll(
+    ".suggestion-card"
+  )
+  .forEach(
+
+    button => {
+
+      button.addEventListener(
+
+        "click",
+
+        function () {
+
+          showScreen(
+            "tasbeeh"
+          );
+
+
+          selectDhikr(
+            button.dataset.dhikrId
+          );
+
+        }
+
+      );
+
+    }
+
+  );
+
+
+/* =========================================================
+   34. Dark Mode
+========================================================= */
+
+const themeToggle =
+  document.getElementById(
+    "themeToggle"
+  );
+
+
+function applyTheme() {
+
+  document.body
+    .classList.toggle(
+
+      "dark",
+
+      Boolean(
+        state.darkMode
+      )
+
+    );
+
+
+  themeToggle.textContent =
+
+    state.darkMode
+
+      ? "☀️"
+
+      : "🌙";
+
+}
+
+
+themeToggle
+  .addEventListener(
+
+    "click",
+
+    function () {
+
+      state.darkMode =
+        !state.darkMode;
+
+
+      saveState();
+
+      applyTheme();
+
+    }
+
+  );
+
+
+/* =========================================================
+   35. المشاركة
 ========================================================= */
 
 const shareModal =
@@ -3046,7 +3861,7 @@ document
 
     "click",
 
-    () => {
+    function () {
 
       shareModal.classList.remove(
         "hidden"
@@ -3065,7 +3880,7 @@ document
 
     "click",
 
-    () => {
+    function () {
 
       shareModal.classList.add(
         "hidden"
@@ -3076,10 +3891,6 @@ document
   );
 
 
-const SHARE_TEXT =
-  "مسبحة إلكترونية بسيطة تساعدك على ذكر الله أينما كنت 🤍🌿";
-
-
 document
   .getElementById(
     "shareNativeBtn"
@@ -3088,7 +3899,7 @@ document
 
     "click",
 
-    async () => {
+    async function () {
 
       if (
         navigator.share
@@ -3111,10 +3922,12 @@ document
 
         }
 
-        catch (error) {
+        catch (
+          error
+        ) {
 
           console.log(
-            "تم إغلاق المشاركة"
+            "Share closed"
           );
 
         }
@@ -3140,17 +3953,21 @@ document
 
     "click",
 
-    () => {
+    function () {
 
-      const text =
-        `${SHARE_TEXT}\n\n${window.location.href}`;
+      const message =
+
+        SHARE_TEXT +
+        "\n\n" +
+        window.location.href;
 
 
       window.open(
 
         "https://wa.me/?text=" +
+
         encodeURIComponent(
-          text
+          message
         ),
 
         "_blank"
@@ -3170,17 +3987,15 @@ document
 
     "click",
 
-    () => {
-
-      const url =
-        encodeURIComponent(
-          window.location.href
-        );
-
+    function () {
 
       window.open(
 
-        `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+        "https://www.facebook.com/sharer/sharer.php?u=" +
+
+        encodeURIComponent(
+          window.location.href
+        ),
 
         "_blank"
 
@@ -3208,19 +4023,22 @@ async function copyCurrentLink() {
 
   try {
 
-    await navigator.clipboard
+    await navigator
+      .clipboard
       .writeText(
         window.location.href
       );
 
 
-    alert(
+    showToast(
       "تم نسخ رابط المسبحة 🤍"
     );
 
   }
 
-  catch (error) {
+  catch (
+    error
+  ) {
 
     prompt(
       "انسخي الرابط:",
@@ -3233,7 +4051,403 @@ async function copyCurrentLink() {
 
 
 /* =========================================================
-   39. إغلاق النوافذ بالضغط على الخلفية
+   36. تصميم مسبحة خاصة
+========================================================= */
+
+const contactModal =
+  document.getElementById(
+    "contactModal"
+  );
+
+
+document
+  .getElementById(
+    "openContactBtn"
+  )
+  .addEventListener(
+
+    "click",
+
+    function () {
+
+      contactModal.classList.remove(
+        "hidden"
+      );
+
+    }
+
+  );
+
+
+document
+  .getElementById(
+    "closeContactModal"
+  )
+  .addEventListener(
+
+    "click",
+
+    function () {
+
+      contactModal.classList.add(
+        "hidden"
+      );
+
+    }
+
+  );
+
+
+function setupContactLink() {
+
+  const message =
+    "مرحبًا، أريد تصميم مسبحة إلكترونية خاصة. أريد الاستفسار عن تصميم مسبحة شخصية / صدقة جارية / عن متوفى.";
+
+
+  const url =
+
+    "https://wa.me/" +
+    CONTACT_PHONE +
+    "?text=" +
+    encodeURIComponent(
+      message
+    );
+
+
+  document
+    .getElementById(
+      "customTasbeehWhatsApp"
+    )
+    .href =
+    url;
+
+}
+
+
+/* =========================================================
+   37. النسخة الاحتياطية
+========================================================= */
+
+document
+  .getElementById(
+    "exportDataBtn"
+  )
+  .addEventListener(
+
+    "click",
+
+    exportData
+
+  );
+
+
+function exportData() {
+
+  const backup = {
+
+    app:
+      "Masbahaty",
+
+    version:
+      3,
+
+    exportedAt:
+      new Date()
+        .toISOString(),
+
+    data:
+      state
+
+  };
+
+
+  const blob =
+    new Blob(
+
+      [
+        JSON.stringify(
+          backup,
+          null,
+          2
+        )
+      ],
+
+      {
+        type:
+          "application/json"
+      }
+
+    );
+
+
+  const url =
+    URL.createObjectURL(
+      blob
+    );
+
+
+  const link =
+    document.createElement(
+      "a"
+    );
+
+
+  link.href =
+    url;
+
+
+  link.download =
+
+    "masbahaty-backup-" +
+    getTodayKey() +
+    ".json";
+
+
+  document.body
+    .appendChild(
+      link
+    );
+
+
+  link.click();
+
+
+  link.remove();
+
+
+  URL.revokeObjectURL(
+    url
+  );
+
+
+  showToast(
+    "تم إنشاء النسخة الاحتياطية."
+  );
+
+}
+
+
+/* =========================================================
+   38. استيراد النسخة الاحتياطية
+========================================================= */
+
+const importInput =
+  document.getElementById(
+    "importDataInput"
+  );
+
+
+const importModal =
+  document.getElementById(
+    "importConfirmModal"
+  );
+
+
+importInput
+  .addEventListener(
+
+    "change",
+
+    function (
+      event
+    ) {
+
+      const file =
+        event.target
+          .files[0];
+
+
+      if (
+        !file
+      ) {
+
+        return;
+
+      }
+
+
+      const reader =
+        new FileReader();
+
+
+      reader.onload =
+        function () {
+
+          try {
+
+            const parsed =
+              JSON.parse(
+                reader.result
+              );
+
+
+            const data =
+
+              parsed.data
+
+                ? parsed.data
+
+                : parsed;
+
+
+            if (
+
+              !data
+
+              ||
+
+              typeof data !==
+              "object"
+
+              ||
+
+              !data.history
+
+            ) {
+
+              throw new Error(
+                "Invalid backup"
+              );
+
+            }
+
+
+            pendingImportData =
+              data;
+
+
+            importModal
+              .classList.remove(
+                "hidden"
+              );
+
+          }
+
+          catch (
+            error
+          ) {
+
+            pendingImportData =
+              null;
+
+
+            showToast(
+              "الملف المختار ليس نسخة احتياطية صحيحة."
+            );
+
+          }
+
+        };
+
+
+      reader.readAsText(
+        file
+      );
+
+    }
+
+  );
+
+
+document
+  .getElementById(
+    "cancelImportBtn"
+  )
+  .addEventListener(
+
+    "click",
+
+    function () {
+
+      pendingImportData =
+        null;
+
+
+      importInput.value =
+        "";
+
+
+      importModal
+        .classList.add(
+          "hidden"
+        );
+
+    }
+
+  );
+
+
+document
+  .getElementById(
+    "confirmImportBtn"
+  )
+  .addEventListener(
+
+    "click",
+
+    function () {
+
+      if (
+        !pendingImportData
+      ) {
+
+        return;
+
+      }
+
+
+      state = {
+
+        ...state,
+
+        ...pendingImportData,
+
+        personalGoals:
+          pendingImportData
+            .personalGoals || {},
+
+        sessionCounters:
+          pendingImportData
+            .sessionCounters || {},
+
+        history:
+          pendingImportData
+            .history || {}
+
+      };
+
+
+      pendingImportData =
+        null;
+
+
+      importInput.value =
+        "";
+
+
+      saveState();
+
+
+      importModal
+        .classList.add(
+          "hidden"
+        );
+
+
+      refreshAll();
+
+
+      showToast(
+        "تمت استعادة بياناتك بنجاح 🤍"
+      );
+
+    }
+
+  );
+
+
+/* =========================================================
+   39. إغلاق الـModals من الخلفية
 ========================================================= */
 
 document
@@ -3248,13 +4462,15 @@ document
 
         "click",
 
-        () => {
+        function () {
 
-          backdrop
-            .parentElement
-            .classList.add(
-              "hidden"
-            );
+          const modal =
+            backdrop.parentElement;
+
+
+          modal.classList.add(
+            "hidden"
+          );
 
         }
 
@@ -3266,25 +4482,7 @@ document
 
 
 /* =========================================================
-   40. اختيار عنصر عشوائي
-========================================================= */
-
-function randomItem(
-  array
-) {
-
-  return array[
-    Math.floor(
-      Math.random() *
-      array.length
-    )
-  ];
-
-}
-
-
-/* =========================================================
-   41. التعامل مع تغيير اليوم أثناء فتح الموقع
+   40. التغيير بين الأيام
 ========================================================= */
 
 let knownDate =
@@ -3293,42 +4491,54 @@ let knownDate =
 
 function checkForNewDay() {
 
-  const currentDate =
+  const current =
     getTodayKey();
 
 
   if (
-    currentDate !==
+    current ===
     knownDate
   ) {
 
-    knownDate =
-      currentDate;
-
-
-    ensureToday();
-
-
-    sessionStarted =
-      false;
-
-
-    updateHomeTotals();
-
-    renderCounter();
-
-    renderToday();
-
-    renderStatistics();
-
-    saveState();
+    return;
 
   }
+
+
+  knownDate =
+    current;
+
+
+  ensureToday();
+
+
+  /*
+    عدادات الجلسات تظهر للمستخدم
+    ولكن مع اليوم الجديد نبدأ جلسة جديدة.
+  */
+
+  state.sessionCounters =
+    {};
+
+
+  sessionStarted =
+    false;
+
+
+  saveState();
+
+
+  refreshAll();
+
+
+  showToast(
+    "يوم جديد… وبداية جديدة 🤍"
+  );
 
 }
 
 
-/* نفحص التاريخ كل دقيقة */
+/* فحص اليوم كل دقيقة */
 
 setInterval(
 
@@ -3340,7 +4550,54 @@ setInterval(
 
 
 /* =========================================================
-   42. تشغيل التطبيق
+   41. عشوائي
+========================================================= */
+
+function randomItem(
+  array
+) {
+
+  return array[
+
+    Math.floor(
+
+      Math.random() *
+      array.length
+
+    )
+
+  ];
+
+}
+
+
+/* =========================================================
+   42. تحديث كل الأقسام
+========================================================= */
+
+function refreshAll() {
+
+  ensureToday();
+
+  applyTheme();
+
+  setupVibration();
+
+  updateHome();
+
+  renderCounter();
+
+  renderToday();
+
+  renderStatistics();
+
+  renderReturnMessage();
+
+}
+
+
+/* =========================================================
+   43. تشغيل التطبيق
 ========================================================= */
 
 function initApp() {
@@ -3351,8 +4608,6 @@ function initApp() {
   ensureToday();
 
 
-  /* حفظ تاريخ الفتح */
-
   state.lastOpenDate =
     getTodayKey();
 
@@ -3360,51 +4615,38 @@ function initApp() {
   saveState();
 
 
-  /* الإعدادات */
+  renderDhikrList();
 
-  vibrationToggle.checked =
-    state.vibration;
+  setupContactLink();
 
+  setupVibration();
 
   applyTheme();
 
-
-  /* القوائم */
-
-  renderDhikrList();
-
-
-  /* الرئيسية */
-
-  updateHomeTotals();
+  updateHome();
 
   renderReturnMessage();
 
+  renderToday();
 
-  /* فتح الذكر المحفوظ */
+  renderStatistics();
 
-  const activeDhikr =
+
+  const currentDhikr =
     getActiveDhikr();
 
 
   if (
-    activeDhikr
+    currentDhikr
   ) {
 
     activeDhikrName.textContent =
-      activeDhikr.name;
+      currentDhikr.name;
 
 
     renderCounter();
 
   }
-
-
-  /* إحصائيات أولية */
-
-  renderToday();
-
-  renderStatistics();
 
 }
 
