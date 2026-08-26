@@ -4,11 +4,16 @@
   "description": "مسبحة إلكترونية بسيطة تساعدك على ذكر الله ومتابعة ذكرك اليومي.",
   "lang": "ar",
   "dir": "rtl",
+
+  "id": "./",
   "start_url": "./",
   "scope": "./",
+
   "display": "standalone",
+
   "background_color": "#f5f1e8",
   "theme_color": "#6f8f78",
+
   "icons": [
     {
       "src": "./icon-192.png",
