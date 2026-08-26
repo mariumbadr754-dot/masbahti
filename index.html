@@ -1,7 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="ar" dir="rtl">
 
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -9,1362 +11,1905 @@
     content="width=device-width, initial-scale=1.0, viewport-fit=cover"
   >
 
-  <title>مسبحتي | M.K.B</title>
+
+  <title>
+    مسبحتي | M.K.B
+  </title>
+
 
   <meta
     name="description"
     content="مسبحة إلكترونية بسيطة تساعدك على ذكر الله ومتابعة ذكرك اليومي."
   >
 
-  <meta name="theme-color" content="#6f8f78">
 
-  <!-- PWA -->
-  <link rel="manifest" href="./manifest.json">
+  <meta
+    name="theme-color"
+    content="#6f8f78"
+  >
 
-  <!-- App Icons -->
+
+  <!-- =========================
+       PWA MANIFEST
+  ========================== -->
+
+  <link
+    rel="manifest"
+    href="./manifest.json"
+  >
+
+
+  <!-- =========================
+       APP ICONS
+  ========================== -->
+
   <link
     rel="icon"
     type="image/png"
-    href="./logo.png"
+    sizes="192x192"
+    href="./icon-192.png"
   >
+
+
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="512x512"
+    href="./icon-512.png"
+  >
+
 
   <link
     rel="apple-touch-icon"
-    href="./logo.png"
+    sizes="180x180"
+    href="./apple-touch-icon.png"
   >
 
-  <!-- Styles -->
+
+  <!-- =========================
+       STYLE
+  ========================== -->
+
   <link
     rel="stylesheet"
     href="./style.css"
   >
+
 </head>
 
 
 <body>
 
-  <div class="app">
+
+<div class="app">
 
 
-    <!-- =========================
-         TOP BAR
-    ========================== -->
+  <!-- =========================
+       TOP BAR
+  ========================== -->
 
-    <header class="topbar">
+  <header class="topbar">
 
-      <div class="brand">
 
-        <div class="brand-mark">
-          <img
-            src="./logo.png"
-            alt="شعار مسبحتي M.K.B"
-          >
-        </div>
+    <div class="brand">
 
-        <div class="brand-text">
-          <h1>مسبحتي</h1>
-          <span>M.K.B</span>
-        </div>
+
+      <div class="brand-mark">
+
+        <img
+          src="./logo.png"
+          alt="شعار مسبحتي M.K.B"
+        >
 
       </div>
 
 
-      <div class="top-actions">
+      <div class="brand-text">
+
+        <h1>
+          مسبحتي
+        </h1>
+
+        <span>
+          M.K.B
+        </span>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="top-actions">
+
+      <button
+        id="themeToggle"
+        class="icon-button"
+        aria-label="تغيير الوضع"
+        type="button"
+      >
+        🌙
+      </button>
+
+    </div>
+
+
+  </header>
+
+
+
+  <!-- =========================
+       MAIN
+  ========================== -->
+
+  <main class="main-content">
+
+
+
+    <!-- =========================
+         HOME
+    ========================== -->
+
+    <section
+      id="homeScreen"
+      class="screen active"
+    >
+
+
+      <div class="verse-card">
+
+        ﴿ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ ﴾
+
+      </div>
+
+
+
+      <div class="hero">
+
+
+        <div class="hero-icon">
+
+          🌿
+
+        </div>
+
+
+        <h2>
+
+          مسبحتي 🤍
+
+        </h2>
+
+
+        <p>
+
+          اجعل لك نصيبًا من ذكر الله كل يوم
+
+        </p>
+
 
         <button
-          id="themeToggle"
-          class="icon-button"
-          aria-label="تغيير الوضع"
+          id="startDhikrBtn"
+          class="primary-button"
           type="button"
         >
-          🌙
+
+          ابدأ الذكر
+
         </button>
+
 
       </div>
 
-    </header>
 
 
-    <!-- =========================
-         MAIN CONTENT
-    ========================== -->
-
-    <main class="main-content">
-
-
-      <!-- =========================
-           HOME SCREEN
-      ========================== -->
-
-      <section
-        id="homeScreen"
-        class="screen active"
+      <div
+        id="returnMessage"
+        class="return-message hidden"
       >
+      </div>
 
-        <div class="verse-card">
-          ﴿ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ ﴾
-        </div>
 
 
-        <div class="hero">
+      <!-- QUICK CARDS -->
 
-          <div class="hero-icon">
-            🌿
-          </div>
 
-          <h2>
-            مسبحتي 🤍
-          </h2>
+      <div class="quick-grid">
 
-          <p>
-            اجعل لك نصيبًا من ذكر الله كل يوم
-          </p>
 
-          <button
-            id="startDhikrBtn"
-            class="primary-button"
-            type="button"
-          >
-            ابدأ الذكر
-          </button>
-
-        </div>
-
-
-        <div
-          id="returnMessage"
-          class="return-message hidden"
-        ></div>
-
-
-        <!-- QUICK CARDS -->
-
-        <div class="quick-grid">
-
-          <button
-            class="quick-card"
-            data-go="tasbeeh"
-            type="button"
-          >
-
-            <span class="quick-icon">
-              📿
-            </span>
-
-            <span class="quick-title">
-              أذكاري
-            </span>
-
-            <span class="quick-text">
-              اختر الذكر وابدأ
-            </span>
-
-          </button>
-
-
-          <button
-            class="quick-card"
-            data-go="today"
-            type="button"
-          >
-
-            <span class="quick-icon">
-              🤍
-            </span>
-
-            <span class="quick-title">
-              حصيلة اليوم
-            </span>
-
-            <span
-              id="homeTodayTotal"
-              class="quick-number"
-            >
-              0
-            </span>
-
-          </button>
-
-
-          <button
-            class="quick-card"
-            data-go="stats"
-            type="button"
-          >
-
-            <span class="quick-icon">
-              📊
-            </span>
-
-            <span class="quick-title">
-              إحصائياتي
-            </span>
-
-            <span class="quick-text">
-              تابع استمراريتك
-            </span>
-
-          </button>
-
-
-          <button
-            id="randomDhikrBtn"
-            class="quick-card"
-            type="button"
-          >
-
-            <span class="quick-icon">
-              🌿
-            </span>
-
-            <span class="quick-title">
-              اختر لي ذكرًا
-            </span>
-
-            <span class="quick-text">
-              اختيار عشوائي
-            </span>
-
-          </button>
-
-        </div>
-
-
-        <!-- WHAT SHOULD I SAY? -->
-
-        <section class="section-block">
-
-          <div class="section-heading">
-
-            <div>
-
-              <span class="eyebrow">
-                ماذا أذكر الآن؟
-              </span>
-
-              <h3>
-                اختر ما يناسبك
-              </h3>
-
-            </div>
-
-          </div>
-
-
-          <div class="suggestion-list">
-
-            <button
-              class="suggestion-card"
-              data-dhikr-id="istighfar"
-              type="button"
-            >
-
-              <span>
-                أريد الاستغفار
-              </span>
-
-              <strong>
-                أستغفر الله وأتوب إليه
-              </strong>
-
-            </button>
-
-
-            <button
-              class="suggestion-card"
-              data-dhikr-id="subhan-wabihamdih"
-              type="button"
-            >
-
-              <span>
-                أريد التسبيح
-              </span>
-
-              <strong>
-                سبحان الله وبحمده
-              </strong>
-
-            </button>
-
-
-            <button
-              class="suggestion-card"
-              data-dhikr-id="salawat"
-              type="button"
-            >
-
-              <span>
-                أريد الصلاة على النبي ﷺ
-              </span>
-
-              <strong>
-                اللهم صل وسلم على نبينا محمد
-              </strong>
-
-            </button>
-
-
-            <button
-              class="suggestion-card"
-              data-dhikr-id="hawqala"
-              type="button"
-            >
-
-              <span>
-                أريد ذكرًا خفيفًا
-              </span>
-
-              <strong>
-                لا حول ولا قوة إلا بالله
-              </strong>
-
-            </button>
-
-          </div>
-
-        </section>
-
-
-        <!-- DAILY MESSAGE -->
-
-        <section class="section-block">
-
-          <div class="faith-card">
-
-            <span class="faith-icon">
-              🌱
-            </span>
-
-            <p id="homeFaithMessage">
-              دقائق الانتظار يمكن أن تصبح دقائق ذكر.
-            </p>
-
-          </div>
-
-        </section>
-
-      </section>
-
-
-      <!-- =========================
-           TASBEEH SCREEN
-      ========================== -->
-
-      <section
-        id="tasbeehScreen"
-        class="screen"
-      >
-
-        <div class="screen-header">
-
-          <div>
-
-            <span class="eyebrow">
-              المسبحة
-            </span>
-
-            <h2>
-              اختر ذكرًا وابدأ
-            </h2>
-
-          </div>
-
-        </div>
-
-
-        <div
-          id="dhikrList"
-          class="dhikr-list"
-        ></div>
-
-
-        <section
-          id="activeDhikrPanel"
-          class="active-dhikr-panel hidden"
+        <button
+          class="quick-card"
+          data-go="tasbeeh"
+          type="button"
         >
 
-          <div class="active-dhikr-head">
+          <span class="quick-icon">
+            📿
+          </span>
 
-            <div>
+          <span class="quick-title">
+            أذكاري
+          </span>
 
-              <span class="eyebrow">
-                الذكر الحالي
-              </span>
+          <span class="quick-text">
+            اختر الذكر وابدأ
+          </span>
 
-              <h2 id="activeDhikrName">
-                سبحان الله
-              </h2>
-
-            </div>
-
-
-            <button
-              id="dhikrVirtueBtn"
-              class="secondary-small-button"
-              type="button"
-            >
-              ✨ ما فضل هذا الذكر؟
-            </button>
-
-          </div>
+        </button>
 
 
-          <!-- COUNT MODE -->
 
-          <div class="mode-box">
+        <button
+          class="quick-card"
+          data-go="today"
+          type="button"
+        >
 
-            <span class="field-label">
-              نوع العد
-            </span>
+          <span class="quick-icon">
+            🤍
+          </span>
 
+          <span class="quick-title">
+            حصيلة اليوم
+          </span>
 
-            <div class="mode-options">
-
-              <button
-                id="freeModeBtn"
-                class="mode-button active"
-                type="button"
-              >
-                ذكر حر ♾️
-              </button>
-
-
-              <button
-                id="sunnahModeBtn"
-                class="mode-button hidden"
-                type="button"
-              >
-                العدد الوارد
-              </button>
-
-
-              <button
-                id="personalGoalBtn"
-                class="mode-button"
-                type="button"
-              >
-                هدف شخصي
-              </button>
-
-            </div>
-
-          </div>
-
-
-          <!-- PERSONAL GOAL -->
-
-          <div
-            id="personalGoalBox"
-            class="personal-goal-box hidden"
+          <span
+            id="homeTodayTotal"
+            class="quick-number"
           >
+            0
+          </span>
 
-            <label for="personalGoalInput">
-              حدد هدفك الشخصي
-            </label>
-
-
-            <div class="goal-input-row">
-
-              <input
-                id="personalGoalInput"
-                type="number"
-                inputmode="numeric"
-                min="1"
-                placeholder="مثال: 100"
-              >
+        </button>
 
 
-              <button
-                id="saveGoalBtn"
-                class="small-button"
-                type="button"
-              >
-                حفظ
-              </button>
 
-            </div>
+        <button
+          class="quick-card"
+          data-go="stats"
+          type="button"
+        >
 
+          <span class="quick-icon">
+            📊
+          </span>
 
-            <p>
-              هدف شخصي وليس عددًا واردًا في السنة.
-            </p>
+          <span class="quick-title">
+            إحصائياتي
+          </span>
 
-          </div>
+          <span class="quick-text">
+            تابع استمراريتك
+          </span>
 
-
-          <!-- COUNTER -->
-
-          <div class="counter-area">
-
-            <button
-              id="tapCounterButton"
-              class="tap-counter"
-              type="button"
-              aria-label="اضغط للذكر"
-            >
-
-              <span
-                id="sessionCounter"
-                class="counter-number"
-              >
-                0
-              </span>
+        </button>
 
 
-              <span class="counter-label">
-                اضغط للذكر
-              </span>
+
+        <button
+          id="randomDhikrBtn"
+          class="quick-card"
+          type="button"
+        >
+
+          <span class="quick-icon">
+            🌿
+          </span>
+
+          <span class="quick-title">
+            اختر لي ذكرًا
+          </span>
+
+          <span class="quick-text">
+            اختيار عشوائي
+          </span>
+
+        </button>
 
 
-              <span
-                id="goalProgress"
-                class="goal-progress"
-              ></span>
-
-            </button>
-
-          </div>
+      </div>
 
 
-          <!-- COUNTER TOTALS -->
 
-          <div class="counter-summary">
-
-            <div class="summary-item">
-
-              <span>
-                إجمالي اليوم لهذا الذكر
-              </span>
-
-              <strong id="activeDhikrTodayTotal">
-                0
-              </strong>
-
-            </div>
+      <!-- WHAT SHOULD I SAY -->
 
 
-            <div class="summary-item">
-
-              <span>
-                إجمالي ذكرك اليوم
-              </span>
-
-              <strong id="allTodayTotal">
-                0
-              </strong>
-
-            </div>
-
-          </div>
+      <section class="section-block">
 
 
-          <!-- VIBRATION -->
+        <div class="section-heading">
 
-          <div class="settings-card">
-
-            <div class="setting-row">
-
-              <div>
-
-                <strong>
-                  اهتزاز خفيف
-                </strong>
-
-                <span>
-                  عند كل ضغطة
-                </span>
-
-              </div>
-
-
-              <label class="switch">
-
-                <input
-                  id="vibrationToggle"
-                  type="checkbox"
-                >
-
-                <span class="slider"></span>
-
-              </label>
-
-            </div>
-
-          </div>
-
-
-          <!-- TASBEEH MESSAGE -->
-
-          <div
-            id="tasbeehMessage"
-            class="faith-card tasbeeh-message"
-          >
-
-            <span class="faith-icon">
-              🤍
-            </span>
-
-            <p>
-              ذكر قليل دائم خير من اندفاع ينقطع.
-            </p>
-
-          </div>
-
-
-          <button
-            id="resetSessionBtn"
-            class="danger-soft-button"
-            type="button"
-          >
-            تصفير عداد الجلسة
-          </button>
-
-        </section>
-
-      </section>
-
-
-      <!-- =========================
-           TODAY SCREEN
-      ========================== -->
-
-      <section
-        id="todayScreen"
-        class="screen"
-      >
-
-        <div class="screen-header">
 
           <div>
 
             <span class="eyebrow">
-              حصيلتي
+
+              ماذا أذكر الآن؟
+
             </span>
 
-            <h2>
-              حصيلة ذكرك اليوم 🤍
-            </h2>
 
-          </div>
+            <h3>
 
-        </div>
+              اختر ما يناسبك
 
-
-        <div class="big-stat-card">
-
-          <span>
-            إجمالي مرات الذكر المسجلة اليوم
-          </span>
-
-          <strong id="todayTotal">
-            0
-          </strong>
-
-          <small>
-            الرقم يمثل مرات الذكر المسجلة داخل المسبحة فقط.
-          </small>
-
-        </div>
-
-
-        <div
-          id="todayDhikrBreakdown"
-          class="breakdown-list"
-        ></div>
-
-
-        <!-- YESTERDAY COMPARISON -->
-
-        <section class="comparison-card">
-
-          <div class="comparison-columns">
-
-            <div>
-
-              <span>
-                أمس
-              </span>
-
-              <strong id="yesterdayTotal">
-                0
-              </strong>
-
-            </div>
-
-
-            <div>
-
-              <span>
-                اليوم
-              </span>
-
-              <strong id="comparisonTodayTotal">
-                0
-              </strong>
-
-            </div>
+            </h3>
 
           </div>
 
 
-          <p id="comparisonMessage">
-            ما زال في يومك متسع لذكر الله 🤍
-          </p>
-
-        </section>
+        </div>
 
 
-        <div class="simple-stat-row">
 
-          <span>
-            عدد جلسات الذكر اليوم
-          </span>
+        <div class="suggestion-list">
 
-          <strong id="todaySessions">
-            0
-          </strong>
+
+          <button
+            class="suggestion-card"
+            data-dhikr-id="istighfar"
+            type="button"
+          >
+
+            <span>
+              أريد الاستغفار
+            </span>
+
+            <strong>
+              أستغفر الله وأتوب إليه
+            </strong>
+
+          </button>
+
+
+
+          <button
+            class="suggestion-card"
+            data-dhikr-id="subhan-wabihamdih"
+            type="button"
+          >
+
+            <span>
+              أريد التسبيح
+            </span>
+
+            <strong>
+              سبحان الله وبحمده
+            </strong>
+
+          </button>
+
+
+
+          <button
+            class="suggestion-card"
+            data-dhikr-id="salawat"
+            type="button"
+          >
+
+            <span>
+              أريد الصلاة على النبي ﷺ
+            </span>
+
+            <strong>
+              اللهم صل وسلم على نبينا محمد
+            </strong>
+
+          </button>
+
+
+
+          <button
+            class="suggestion-card"
+            data-dhikr-id="hawqala"
+            type="button"
+          >
+
+            <span>
+              أريد ذكرًا خفيفًا
+            </span>
+
+            <strong>
+              لا حول ولا قوة إلا بالله
+            </strong>
+
+          </button>
+
 
         </div>
+
+
+      </section>
+
+
+
+      <!-- DAILY MESSAGE -->
+
+
+      <section class="section-block">
 
 
         <div class="faith-card">
 
+
           <span class="faith-icon">
-            🌿
+
+            🌱
+
           </span>
 
-          <p id="todayClosingMessage">
-            خذ معك ذكر الله أينما ذهبت.
+
+          <p id="homeFaithMessage">
+
+            دقائق الانتظار يمكن أن تصبح دقائق ذكر.
+
           </p>
 
+
         </div>
+
 
       </section>
 
 
-      <!-- =========================
-           STATISTICS SCREEN
-      ========================== -->
+    </section>
+
+
+
+    <!-- =========================
+         TASBEEH
+    ========================== -->
+
+
+    <section
+      id="tasbeehScreen"
+      class="screen"
+    >
+
+
+      <div class="screen-header">
+
+
+        <div>
+
+
+          <span class="eyebrow">
+
+            المسبحة
+
+          </span>
+
+
+          <h2>
+
+            اختر ذكرًا وابدأ
+
+          </h2>
+
+
+        </div>
+
+
+      </div>
+
+
+
+      <div
+        id="dhikrList"
+        class="dhikr-list"
+      >
+      </div>
+
+
 
       <section
-        id="statsScreen"
-        class="screen"
+        id="activeDhikrPanel"
+        class="active-dhikr-panel hidden"
       >
 
-        <div class="screen-header">
+
+        <div class="active-dhikr-head">
+
 
           <div>
 
+
             <span class="eyebrow">
-              إحصائياتي
+
+              الذكر الحالي
+
             </span>
 
-            <h2>
-              تابع نفسك بلطف 🌿
+
+            <h2 id="activeDhikrName">
+
+              سبحان الله
+
             </h2>
 
+
           </div>
 
-        </div>
-
-
-        <!-- TABS -->
-
-        <div class="stats-tabs">
-
-          <button
-            class="stats-tab active"
-            data-period="day"
-            type="button"
-          >
-            اليوم
-          </button>
 
 
           <button
-            class="stats-tab"
-            data-period="week"
+            id="dhikrVirtueBtn"
+            class="secondary-small-button"
             type="button"
           >
-            الأسبوع
+
+            ✨ ما فضل هذا الذكر؟
+
           </button>
 
-
-          <button
-            class="stats-tab"
-            data-period="month"
-            type="button"
-          >
-            الشهر
-          </button>
 
         </div>
 
 
-        <!-- DAY -->
+
+        <!-- MODE -->
+
+
+        <div class="mode-box">
+
+
+          <span class="field-label">
+
+            نوع العد
+
+          </span>
+
+
+
+          <div class="mode-options">
+
+
+            <button
+              id="freeModeBtn"
+              class="mode-button active"
+              type="button"
+            >
+
+              ذكر حر ♾️
+
+            </button>
+
+
+
+            <button
+              id="sunnahModeBtn"
+              class="mode-button hidden"
+              type="button"
+            >
+
+              العدد الوارد
+
+            </button>
+
+
+
+            <button
+              id="personalGoalBtn"
+              class="mode-button"
+              type="button"
+            >
+
+              هدف شخصي
+
+            </button>
+
+
+          </div>
+
+
+        </div>
+
+
+
+        <!-- PERSONAL GOAL -->
+
 
         <div
-          id="dayStats"
-          class="stats-panel active"
+          id="personalGoalBox"
+          class="personal-goal-box hidden"
         >
 
-          <div class="stat-grid">
 
-            <div class="stat-card">
+          <label for="personalGoalInput">
 
-              <span>
-                إجمالي اليوم
-              </span>
+            حدد هدفك الشخصي
 
-              <strong id="statsTodayTotal">
-                0
-              </strong>
-
-            </div>
+          </label>
 
 
-            <div class="stat-card">
 
-              <span>
-                عدد الجلسات
-              </span>
+          <div class="goal-input-row">
 
-              <strong id="statsTodaySessions">
-                0
-              </strong>
 
-            </div>
+            <input
+              id="personalGoalInput"
+              type="number"
+              inputmode="numeric"
+              min="1"
+              placeholder="مثال: 100"
+            >
+
+
+
+            <button
+              id="saveGoalBtn"
+              class="small-button"
+              type="button"
+            >
+
+              حفظ
+
+            </button>
+
 
           </div>
 
 
-          <div class="detail-card">
 
-            <span>
-              أكثر ذكر اليوم
-            </span>
+          <p>
 
-            <strong id="mostUsedToday">
-              لا توجد بيانات بعد
-            </strong>
+            هدف شخصي وليس عددًا واردًا في السنة.
 
-          </div>
+          </p>
 
-
-          <div class="detail-card">
-
-            <span>
-              مقارنة بالأمس
-            </span>
-
-            <strong id="dayComparisonStat">
-              —
-            </strong>
-
-          </div>
 
         </div>
 
 
-        <!-- WEEK -->
 
-        <div
-          id="weekStats"
-          class="stats-panel"
-        >
-
-          <div
-            id="weekChart"
-            class="bar-chart"
-          ></div>
+        <!-- COUNTER -->
 
 
-          <div class="stat-grid">
+        <div class="counter-area">
 
-            <div class="stat-card">
+
+          <button
+            id="tapCounterButton"
+            class="tap-counter"
+            type="button"
+            aria-label="اضغط للذكر"
+          >
+
+
+            <span
+              id="sessionCounter"
+              class="counter-number"
+            >
+
+              0
+
+            </span>
+
+
+
+            <span class="counter-label">
+
+              اضغط للذكر
+
+            </span>
+
+
+
+            <span
+              id="goalProgress"
+              class="goal-progress"
+            >
+            </span>
+
+
+          </button>
+
+
+        </div>
+
+
+
+        <!-- COUNTER TOTALS -->
+
+
+        <div class="counter-summary">
+
+
+          <div class="summary-item">
+
+
+            <span>
+
+              إجمالي اليوم لهذا الذكر
+
+            </span>
+
+
+            <strong id="activeDhikrTodayTotal">
+
+              0
+
+            </strong>
+
+
+          </div>
+
+
+
+          <div class="summary-item">
+
+
+            <span>
+
+              إجمالي ذكرك اليوم
+
+            </span>
+
+
+            <strong id="allTodayTotal">
+
+              0
+
+            </strong>
+
+
+          </div>
+
+
+        </div>
+
+
+
+        <!-- VIBRATION -->
+
+
+        <div class="settings-card">
+
+
+          <div class="setting-row">
+
+
+            <div>
+
+
+              <strong>
+
+                اهتزاز خفيف
+
+              </strong>
+
 
               <span>
-                إجمالي الأسبوع
+
+                عند كل ضغطة
+
               </span>
 
-              <strong id="weekTotal">
+
+            </div>
+
+
+
+            <label class="switch">
+
+
+              <input
+                id="vibrationToggle"
+                type="checkbox"
+              >
+
+
+              <span class="slider"></span>
+
+
+            </label>
+
+
+          </div>
+
+
+        </div>
+
+
+
+        <div
+          id="tasbeehMessage"
+          class="faith-card tasbeeh-message"
+        >
+
+
+          <span class="faith-icon">
+
+            🤍
+
+          </span>
+
+
+          <p>
+
+            ذكر قليل دائم خير من اندفاع ينقطع.
+
+          </p>
+
+
+        </div>
+
+
+
+        <button
+          id="resetSessionBtn"
+          class="danger-soft-button"
+          type="button"
+        >
+
+          تصفير عداد الجلسة
+
+        </button>
+
+
+      </section>
+
+
+    </section>
+
+
+
+    <!-- =========================
+         TODAY
+    ========================== -->
+
+
+    <section
+      id="todayScreen"
+      class="screen"
+    >
+
+
+      <div class="screen-header">
+
+
+        <div>
+
+
+          <span class="eyebrow">
+
+            حصيلتي
+
+          </span>
+
+
+          <h2>
+
+            حصيلة ذكرك اليوم 🤍
+
+          </h2>
+
+
+        </div>
+
+
+      </div>
+
+
+
+      <div class="big-stat-card">
+
+
+        <span>
+
+          إجمالي مرات الذكر المسجلة اليوم
+
+        </span>
+
+
+        <strong id="todayTotal">
+
+          0
+
+        </strong>
+
+
+        <small>
+
+          الرقم يمثل مرات الذكر المسجلة داخل المسبحة فقط.
+
+        </small>
+
+
+      </div>
+
+
+
+      <div
+        id="todayDhikrBreakdown"
+        class="breakdown-list"
+      >
+      </div>
+
+
+
+      <section class="comparison-card">
+
+
+        <div class="comparison-columns">
+
+
+          <div>
+
+
+            <span>
+
+              أمس
+
+            </span>
+
+
+            <strong id="yesterdayTotal">
+
+              0
+
+            </strong>
+
+
+          </div>
+
+
+
+          <div>
+
+
+            <span>
+
+              اليوم
+
+            </span>
+
+
+            <strong id="comparisonTodayTotal">
+
+              0
+
+            </strong>
+
+
+          </div>
+
+
+        </div>
+
+
+
+        <p id="comparisonMessage">
+
+          ما زال في يومك متسع لذكر الله 🤍
+
+        </p>
+
+
+      </section>
+
+
+
+      <div class="simple-stat-row">
+
+
+        <span>
+
+          عدد جلسات الذكر اليوم
+
+        </span>
+
+
+        <strong id="todaySessions">
+
+          0
+
+        </strong>
+
+
+      </div>
+
+
+
+      <div class="faith-card">
+
+
+        <span class="faith-icon">
+
+          🌿
+
+        </span>
+
+
+        <p id="todayClosingMessage">
+
+          خذ معك ذكر الله أينما ذهبت.
+
+        </p>
+
+
+      </div>
+
+
+    </section>
+
+
+
+    <!-- =========================
+         STATISTICS
+    ========================== -->
+
+
+    <section
+      id="statsScreen"
+      class="screen"
+    >
+
+
+      <div class="screen-header">
+
+
+        <div>
+
+
+          <span class="eyebrow">
+
+            إحصائياتي
+
+          </span>
+
+
+          <h2>
+
+            تابع نفسك بلطف 🌿
+
+          </h2>
+
+
+        </div>
+
+
+      </div>
+
+
+
+      <div class="stats-tabs">
+
+
+        <button
+          class="stats-tab active"
+          data-period="day"
+          type="button"
+        >
+
+          اليوم
+
+        </button>
+
+
+        <button
+          class="stats-tab"
+          data-period="week"
+          type="button"
+        >
+
+          الأسبوع
+
+        </button>
+
+
+        <button
+          class="stats-tab"
+          data-period="month"
+          type="button"
+        >
+
+          الشهر
+
+        </button>
+
+
+      </div>
+
+
+
+      <!-- DAY -->
+
+
+      <div
+        id="dayStats"
+        class="stats-panel active"
+      >
+
+
+        <div class="stat-grid">
+
+
+          <div class="stat-card">
+
+
+            <span>
+
+              إجمالي اليوم
+
+            </span>
+
+
+            <strong id="statsTodayTotal">
+
+              0
+
+            </strong>
+
+
+          </div>
+
+
+
+          <div class="stat-card">
+
+
+            <span>
+
+              عدد الجلسات
+
+            </span>
+
+
+            <strong id="statsTodaySessions">
+
+              0
+
+            </strong>
+
+
+          </div>
+
+
+        </div>
+
+
+
+        <div class="detail-card">
+
+
+          <span>
+
+            أكثر ذكر اليوم
+
+          </span>
+
+
+          <strong id="mostUsedToday">
+
+            لا توجد بيانات بعد
+
+          </strong>
+
+
+        </div>
+
+
+
+        <div class="detail-card">
+
+
+          <span>
+
+            مقارنة بالأمس
+
+          </span>
+
+
+          <strong id="dayComparisonStat">
+
+            —
+
+          </strong>
+
+
+        </div>
+
+
+      </div>
+
+
+
+      <!-- WEEK -->
+
+
+      <div
+        id="weekStats"
+        class="stats-panel"
+      >
+
+
+        <div
+          id="weekChart"
+          class="bar-chart"
+        >
+        </div>
+
+
+
+        <div class="stat-grid">
+
+
+          <div class="stat-card">
+
+
+            <span>
+
+              إجمالي الأسبوع
+
+            </span>
+
+
+            <strong id="weekTotal">
+
+              0
+
+            </strong>
+
+
+          </div>
+
+
+
+          <div class="stat-card">
+
+
+            <span>
+
+              المتوسط اليومي
+
+            </span>
+
+
+            <strong id="weekAverage">
+
+              0
+
+            </strong>
+
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+
+
+      <!-- MONTH -->
+
+
+      <div
+        id="monthStats"
+        class="stats-panel"
+      >
+
+
+        <div class="harvest-card">
+
+
+          <span class="eyebrow">
+
+            حصاد الشهر
+
+          </span>
+
+
+          <h3 id="monthHarvestTitle">
+
+            حصاد ذكرك هذا الشهر 🤍
+
+          </h3>
+
+
+
+          <div class="harvest-grid">
+
+
+            <div>
+
+              <span>
+                إجمالي مرات الذكر
+              </span>
+
+              <strong id="monthTotal">
                 0
               </strong>
 
             </div>
 
 
-            <div class="stat-card">
+
+            <div>
+
+              <span>
+                أيام الاستخدام
+              </span>
+
+              <strong id="monthActiveDays">
+                0
+              </strong>
+
+            </div>
+
+
+
+            <div>
+
+              <span>
+                أكثر ذكر رافقك
+              </span>
+
+              <strong id="monthTopDhikr">
+                —
+              </strong>
+
+            </div>
+
+
+
+            <div>
+
+              <span>
+                أعلى يوم
+              </span>
+
+              <strong id="monthBestDay">
+                —
+              </strong>
+
+            </div>
+
+
+
+            <div>
 
               <span>
                 المتوسط اليومي
               </span>
 
-              <strong id="weekAverage">
+              <strong id="monthAverage">
                 0
               </strong>
 
             </div>
 
+
           </div>
+
 
         </div>
 
 
-        <!-- MONTH -->
+
+        <div class="comparison-card">
+
+
+          <p id="monthComparisonMessage">
+
+            بداية جديدة في كل شهر 🤍
+
+          </p>
+
+
+        </div>
+
+
+      </div>
+
+
+
+      <!-- STREAK -->
+
+
+      <section class="streak-card">
+
 
         <div
-          id="monthStats"
-          class="stats-panel"
+          id="streakPlant"
+          class="streak-plant"
         >
 
-          <div class="harvest-card">
-
-            <span class="eyebrow">
-              حصاد الشهر
-            </span>
-
-            <h3 id="monthHarvestTitle">
-              حصاد ذكرك هذا الشهر 🤍
-            </h3>
-
-
-            <div class="harvest-grid">
-
-              <div>
-
-                <span>
-                  إجمالي مرات الذكر
-                </span>
-
-                <strong id="monthTotal">
-                  0
-                </strong>
-
-              </div>
-
-
-              <div>
-
-                <span>
-                  أيام الاستخدام
-                </span>
-
-                <strong id="monthActiveDays">
-                  0
-                </strong>
-
-              </div>
-
-
-              <div>
-
-                <span>
-                  أكثر ذكر رافقك
-                </span>
-
-                <strong id="monthTopDhikr">
-                  —
-                </strong>
-
-              </div>
-
-
-              <div>
-
-                <span>
-                  أعلى يوم
-                </span>
-
-                <strong id="monthBestDay">
-                  —
-                </strong>
-
-              </div>
-
-
-              <div>
-
-                <span>
-                  المتوسط اليومي
-                </span>
-
-                <strong id="monthAverage">
-                  0
-                </strong>
-
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <div class="comparison-card">
-
-            <p id="monthComparisonMessage">
-              بداية جديدة في كل شهر 🤍
-            </p>
-
-          </div>
+          🌱
 
         </div>
 
 
-        <!-- STREAK -->
 
-        <section class="streak-card">
-
-          <div
-            id="streakPlant"
-            class="streak-plant"
-          >
-            🌱
-          </div>
+        <div>
 
 
-          <div>
+          <span>
 
-            <span>
-              استمراريتك
-            </span>
+            استمراريتك
 
-            <strong id="streakDays">
-              0 يوم
-            </strong>
+          </span>
 
-            <p id="streakMessage">
-              يوم جديد… وبداية جديدة 🤍
-            </p>
 
-          </div>
+          <strong id="streakDays">
 
-        </section>
+            0 يوم
+
+          </strong>
+
+
+          <p id="streakMessage">
+
+            يوم جديد… وبداية جديدة 🤍
+
+          </p>
+
+
+        </div>
+
 
       </section>
 
-    </main>
 
+    </section>
 
-    <!-- =========================
-         BOTTOM NAVIGATION
-    ========================== -->
 
-    <nav class="bottom-nav">
+  </main>
 
-      <button
-        class="nav-button active"
-        data-screen="home"
-        type="button"
-      >
 
-        <span>🏠</span>
-        <small>الرئيسية</small>
 
-      </button>
+  <!-- =========================
+       BOTTOM NAV
+  ========================== -->
 
 
-      <button
-        class="nav-button"
-        data-screen="tasbeeh"
-        type="button"
-      >
+  <nav class="bottom-nav">
 
-        <span>📿</span>
-        <small>المسبحة</small>
-
-      </button>
-
-
-      <button
-        class="nav-button"
-        data-screen="today"
-        type="button"
-      >
-
-        <span>🤍</span>
-        <small>حصيلتي</small>
-
-      </button>
-
-
-      <button
-        class="nav-button"
-        data-screen="stats"
-        type="button"
-      >
-
-        <span>📊</span>
-        <small>الإحصائيات</small>
-
-      </button>
-
-    </nav>
-
-
-    <!-- =========================
-         VIRTUE MODAL
-    ========================== -->
-
-    <div
-      id="virtueModal"
-      class="modal hidden"
-      aria-hidden="true"
-    >
-
-      <div class="modal-backdrop"></div>
-
-
-      <div class="modal-card">
-
-        <button
-          id="closeVirtueModal"
-          class="modal-close"
-          type="button"
-          aria-label="إغلاق"
-        >
-          ×
-        </button>
-
-
-        <span class="eyebrow">
-          ✨ فضل هذا الذكر
-        </span>
-
-
-        <h3 id="virtueDhikrName"></h3>
-
-
-        <blockquote id="virtueHadith"></blockquote>
-
-
-        <div class="source-box">
-
-          <span>
-            المصدر
-          </span>
-
-          <strong id="virtueSource"></strong>
-
-        </div>
-
-
-        <div
-          id="virtueCountBox"
-          class="source-box hidden"
-        >
-
-          <span>
-            العدد الوارد في الحديث
-          </span>
-
-          <strong id="virtueCount"></strong>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- =========================
-         RESET MODAL
-    ========================== -->
-
-    <div
-      id="resetModal"
-      class="modal hidden"
-      aria-hidden="true"
-    >
-
-      <div class="modal-backdrop"></div>
-
-
-      <div class="modal-card small-modal">
-
-        <h3>
-          تصفير عداد الجلسة؟
-        </h3>
-
-        <p>
-          سيتم تصفير العداد الظاهر فقط، ولن تتأثر حصيلة اليوم.
-        </p>
-
-
-        <div class="modal-actions">
-
-          <button
-            id="cancelResetBtn"
-            class="secondary-button"
-            type="button"
-          >
-            إلغاء
-          </button>
-
-
-          <button
-            id="confirmResetBtn"
-            class="danger-button"
-            type="button"
-          >
-            نعم، صفّر العداد
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- =========================
-         SHARE MODAL
-    ========================== -->
-
-    <div
-      id="shareModal"
-      class="modal hidden"
-      aria-hidden="true"
-    >
-
-      <div class="modal-backdrop"></div>
-
-
-      <div class="modal-card small-modal">
-
-        <button
-          id="closeShareModal"
-          class="modal-close"
-          type="button"
-          aria-label="إغلاق"
-        >
-          ×
-        </button>
-
-
-        <h3>
-          شارك المسبحة 🤍
-        </h3>
-
-
-        <div class="share-grid">
-
-          <button
-            id="shareNativeBtn"
-            type="button"
-          >
-            مشاركة
-          </button>
-
-
-          <button
-            id="shareWhatsAppBtn"
-            type="button"
-          >
-            WhatsApp
-          </button>
-
-
-          <button
-            id="shareFacebookBtn"
-            type="button"
-          >
-            Facebook
-          </button>
-
-
-          <button
-            id="copyLinkBtn"
-            type="button"
-          >
-            نسخ الرابط
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- =========================
-         FLOATING SHARE
-    ========================== -->
 
     <button
-      id="openShareBtn"
-      class="floating-share"
+      class="nav-button active"
+      data-screen="home"
       type="button"
-      aria-label="مشاركة المسبحة"
     >
-      ↗
+
+      <span>
+        🏠
+      </span>
+
+      <small>
+        الرئيسية
+      </small>
+
     </button>
 
 
-    <!-- =========================
-         FOOTER
-    ========================== -->
 
-    <footer class="app-footer">
+    <button
+      class="nav-button"
+      data-screen="tasbeeh"
+      type="button"
+    >
 
-      <p>
-        صُنعت بمحبة لتكون عونًا على ذكر الله 🤍
-      </p>
+      <span>
+        📿
+      </span>
 
-      <strong>
-        M.K.B
-      </strong>
+      <small>
+        المسبحة
+      </small>
 
-    </footer>
+    </button>
+
+
+
+    <button
+      class="nav-button"
+      data-screen="today"
+      type="button"
+    >
+
+      <span>
+        🤍
+      </span>
+
+      <small>
+        حصيلتي
+      </small>
+
+    </button>
+
+
+
+    <button
+      class="nav-button"
+      data-screen="stats"
+      type="button"
+    >
+
+      <span>
+        📊
+      </span>
+
+      <small>
+        الإحصائيات
+      </small>
+
+    </button>
+
+
+  </nav>
+
+
+
+  <!-- =========================
+       VIRTUE MODAL
+  ========================== -->
+
+
+  <div
+    id="virtueModal"
+    class="modal hidden"
+    aria-hidden="true"
+  >
+
+
+    <div class="modal-backdrop"></div>
+
+
+
+    <div class="modal-card">
+
+
+      <button
+        id="closeVirtueModal"
+        class="modal-close"
+        type="button"
+        aria-label="إغلاق"
+      >
+
+        ×
+
+      </button>
+
+
+
+      <span class="eyebrow">
+
+        ✨ فضل هذا الذكر
+
+      </span>
+
+
+
+      <h3 id="virtueDhikrName">
+      </h3>
+
+
+
+      <blockquote id="virtueHadith">
+      </blockquote>
+
+
+
+      <div class="source-box">
+
+
+        <span>
+
+          المصدر
+
+        </span>
+
+
+        <strong id="virtueSource">
+        </strong>
+
+
+      </div>
+
+
+
+      <div
+        id="virtueCountBox"
+        class="source-box hidden"
+      >
+
+
+        <span>
+
+          العدد الوارد في الحديث
+
+        </span>
+
+
+        <strong id="virtueCount">
+        </strong>
+
+
+      </div>
+
+
+    </div>
+
 
   </div>
 
 
-  <!-- =========================
-       MAIN JAVASCRIPT
-  ========================== -->
-
-  <script src="./app.js"></script>
-
 
   <!-- =========================
-       SERVICE WORKER
+       RESET MODAL
   ========================== -->
 
-  <script>
 
-    if ("serviceWorker" in navigator) {
+  <div
+    id="resetModal"
+    class="modal hidden"
+    aria-hidden="true"
+  >
 
-      window.addEventListener(
-        "load",
-        function () {
 
-          navigator.serviceWorker
-            .register("./service-worker.js")
+    <div class="modal-backdrop"></div>
 
-            .then(function () {
+
+
+    <div class="modal-card small-modal">
+
+
+      <h3>
+
+        تصفير عداد الجلسة؟
+
+      </h3>
+
+
+      <p>
+
+        سيتم تصفير العداد الظاهر فقط، ولن تتأثر حصيلة اليوم.
+
+      </p>
+
+
+
+      <div class="modal-actions">
+
+
+        <button
+          id="cancelResetBtn"
+          class="secondary-button"
+          type="button"
+        >
+
+          إلغاء
+
+        </button>
+
+
+
+        <button
+          id="confirmResetBtn"
+          class="danger-button"
+          type="button"
+        >
+
+          نعم، صفّر العداد
+
+        </button>
+
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+
+  <!-- =========================
+       SHARE MODAL
+  ========================== -->
+
+
+  <div
+    id="shareModal"
+    class="modal hidden"
+    aria-hidden="true"
+  >
+
+
+    <div class="modal-backdrop"></div>
+
+
+
+    <div class="modal-card small-modal">
+
+
+      <button
+        id="closeShareModal"
+        class="modal-close"
+        type="button"
+        aria-label="إغلاق"
+      >
+
+        ×
+
+      </button>
+
+
+
+      <h3>
+
+        شارك المسبحة 🤍
+
+      </h3>
+
+
+
+      <div class="share-grid">
+
+
+        <button
+          id="shareNativeBtn"
+          type="button"
+        >
+
+          مشاركة
+
+        </button>
+
+
+
+        <button
+          id="shareWhatsAppBtn"
+          type="button"
+        >
+
+          WhatsApp
+
+        </button>
+
+
+
+        <button
+          id="shareFacebookBtn"
+          type="button"
+        >
+
+          Facebook
+
+        </button>
+
+
+
+        <button
+          id="copyLinkBtn"
+          type="button"
+        >
+
+          نسخ الرابط
+
+        </button>
+
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+
+  <!-- =========================
+       SHARE BUTTON
+  ========================== -->
+
+
+  <button
+    id="openShareBtn"
+    class="floating-share"
+    type="button"
+    aria-label="مشاركة المسبحة"
+  >
+
+    ↗
+
+  </button>
+
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+
+  <footer class="app-footer">
+
+
+    <p>
+
+      صُنعت بمحبة لتكون عونًا على ذكر الله 🤍
+
+    </p>
+
+
+    <strong>
+
+      M.K.B
+
+    </strong>
+
+
+  </footer>
+
+
+</div>
+
+
+
+<!-- =========================
+     APP JAVASCRIPT
+========================== -->
+
+
+<script src="./app.js"></script>
+
+
+
+<!-- =========================
+     SERVICE WORKER
+========================== -->
+
+
+<script>
+
+  if (
+    "serviceWorker" in navigator
+  ) {
+
+    window.addEventListener(
+      "load",
+
+      function () {
+
+        navigator.serviceWorker
+
+          .register(
+            "./service-worker.js"
+          )
+
+          .then(
+            function () {
 
               console.log(
-                "Masbahati Service Worker registered successfully"
+                "Masbahati PWA ready"
               );
 
-            })
+            }
+          )
 
-            .catch(function (error) {
+          .catch(
+            function (error) {
 
               console.log(
-                "Service Worker registration failed:",
+                "Service Worker error:",
                 error
               );
 
-            });
+            }
+          );
 
-        }
-      );
+      }
+    );
 
-    }
+  }
 
-  </script>
+</script>
+
 
 </body>
 
