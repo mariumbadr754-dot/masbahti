@@ -1,4 +1,4 @@
-const CACHE_NAME = "masbahati-v4";
+const CACHE_NAME = "masbahaty-v6";
 
 const FILES_TO_CACHE = [
   "./",
@@ -13,146 +13,177 @@ const FILES_TO_CACHE = [
 ];
 
 
-/* ==============================
+/* =========================================================
    INSTALL
-============================== */
+========================================================= */
 
-self.addEventListener("install", event => {
+self.addEventListener(
+  "install",
+  function (event) {
 
-  event.waitUntil(
+    event.waitUntil(
 
-    caches
-      .open(CACHE_NAME)
+      caches
+        .open(CACHE_NAME)
 
-      .then(cache => {
+        .then(
+          function (cache) {
 
-        return cache.addAll(
-          FILES_TO_CACHE
-        );
-
-      })
-
-  );
-
-  self.skipWaiting();
-
-});
-
-
-/* ==============================
-   ACTIVATE
-============================== */
-
-self.addEventListener("activate", event => {
-
-  event.waitUntil(
-
-    caches
-      .keys()
-
-      .then(cacheNames => {
-
-        return Promise.all(
-
-          cacheNames.map(cacheName => {
-
-            if (
-              cacheName !== CACHE_NAME
-            ) {
-
-              return caches.delete(
-                cacheName
-              );
-
-            }
-
-          })
-
-        );
-
-      })
-
-  );
-
-  self.clients.claim();
-
-});
-
-
-/* ==============================
-   FETCH
-============================== */
-
-self.addEventListener("fetch", event => {
-
-  if (
-    event.request.method !== "GET"
-  ) {
-
-    return;
-
-  }
-
-
-  event.respondWith(
-
-    fetch(event.request)
-
-      .then(networkResponse => {
-
-        const clonedResponse =
-          networkResponse.clone();
-
-
-        caches
-          .open(CACHE_NAME)
-
-          .then(cache => {
-
-            cache.put(
-              event.request,
-              clonedResponse
+            return cache.addAll(
+              FILES_TO_CACHE
             );
 
-          });
+          }
+        )
+
+    );
 
 
-        return networkResponse;
+    self.skipWaiting();
 
-      })
-
-
-      .catch(() => {
-
-        return caches
-          .match(event.request)
-
-          .then(cachedResponse => {
-
-            if (
-              cachedResponse
-            ) {
-
-              return cachedResponse;
-
-            }
+  }
+);
 
 
-            if (
-              event.request.mode ===
-              "navigate"
-            ) {
+/* =========================================================
+   ACTIVATE
+========================================================= */
 
-              return caches.match(
-                "./index.html"
+self.addEventListener(
+  "activate",
+  function (event) {
+
+    event.waitUntil(
+
+      caches
+        .keys()
+
+        .then(
+          function (cacheNames) {
+
+            return Promise.all(
+
+              cacheNames.map(
+                function (cacheName) {
+
+                  if (
+                    cacheName !==
+                    CACHE_NAME
+                  ) {
+
+                    return caches.delete(
+                      cacheName
+                    );
+
+                  }
+
+                }
+              )
+
+            );
+
+          }
+        )
+
+    );
+
+
+    self.clients.claim();
+
+  }
+);
+
+
+/* =========================================================
+   FETCH
+========================================================= */
+
+self.addEventListener(
+  "fetch",
+  function (event) {
+
+    if (
+      event.request.method !==
+      "GET"
+    ) {
+
+      return;
+
+    }
+
+
+    event.respondWith(
+
+      fetch(
+        event.request
+      )
+
+        .then(
+          function (networkResponse) {
+
+            const responseClone =
+              networkResponse.clone();
+
+
+            caches
+              .open(CACHE_NAME)
+
+              .then(
+                function (cache) {
+
+                  cache.put(
+                    event.request,
+                    responseClone
+                  );
+
+                }
               );
 
-            }
 
-          });
+            return networkResponse;
 
-      })
+          }
+        )
 
-  );
 
-});
+        .catch(
+          function () {
+
+            return caches
+              .match(
+                event.request
+              )
+
+              .then(
+                function (cachedResponse) {
+
+                  if (
+                    cachedResponse
+                  ) {
+
+                    return cachedResponse;
+
+                  }
+
+
+                  if (
+                    event.request.mode ===
+                    "navigate"
+                  ) {
+
+                    return caches.match(
+                      "./index.html"
+                    );
+
+                  }
+
+                }
+              );
+
+          }
+        )
+
+    );
+
+  }
+);
